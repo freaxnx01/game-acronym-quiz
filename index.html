@@ -299,10 +299,63 @@ function startQuiz(){
   render();
 }
 
+// Clean vocabulary harvested from every expansion, split on whitespace AND
+// hyphens (so "Short-Term" yields both "Short" and "Term"), stripped to letters
+// and bucketed by first letter. Used to build decoys that share the acronym's
+// exact initialism — real MC decoys must spell the same acronym, otherwise the
+// answer is just initials-matching against unrelated expansions.
+const VOCAB=(()=>{
+  const m={};
+  ACRONYMS.forEach(a=>a.full.split(/[\s-]+/).forEach(raw=>{
+    const w=raw.replace(/[^A-Za-z']/g,'');
+    if(!w)return;
+    const k=w[0].toUpperCase();
+    (m[k]=m[k]||new Set()).add(w);
+  }));
+  const out={};for(const k in m)out[k]=[...m[k]];return out;
+})();
+
+// Short function words carry acronym letters (Wine Is Not an Emulator) but read
+// badly when swapped — keep them verbatim so decoys stay plausible.
+const STOPWORDS=/^(a|an|as|of|the|is|to|not|and|for|from|in|on)$/i;
+
+// Replace one hyphen-part's leading letters with a different same-initial word,
+// preserving trailing punctuation (commas, colons, 's) and non-letter tokens.
+function subPart(part){
+  const mm=part.match(/^([A-Za-z]+)(.*)$/);
+  if(!mm)return part;                       // punctuation / numbers → keep
+  const head=mm[1],tail=mm[2];
+  if(STOPWORDS.test(head))return part;
+  const alts=(VOCAB[head[0].toUpperCase()]||[]).filter(x=>x.toUpperCase()!==head.toUpperCase());
+  return (alts.length?alts[Math.floor(Math.random()*alts.length)]:head)+tail;
+}
+
+// Build a plausible fake expansion with the SAME whitespace/hyphen/initial
+// skeleton as the real one → the same acronym derivation yields the same
+// acronym (e.g. "Long Short-Term Memory" → another L-S-T-M expansion).
+function makeFakeExpansion(real){
+  return real.split(/\s+/).map(tok=>tok.split('-').map(subPart).join('-')).join(' ');
+}
+
+function makeDistractors(real,count){
+  const out=new Set();
+  for(let g=0;out.size<count&&g<count*20;g++){
+    const fake=makeFakeExpansion(real);
+    if(fake!==real)out.add(fake);
+  }
+  return [...out];
+}
+
 function buildMCQuestions(pool,n){
   let picked=pickN(pool,n);
   return picked.map(a=>{
-    let wrong=pickN(pool.filter(x=>x.acronym!==a.acronym),3).map(x=>x.full);
+    let wrong=makeDistractors(a.full,3);
+    // Fallback for short expansions with too little same-initial vocabulary:
+    // top up with other acronyms' real expansions (rare).
+    if(wrong.length<3){
+      const extra=pickN(pool.filter(x=>x.acronym!==a.acronym&&x.full!==a.full&&!wrong.includes(x.full)),3-wrong.length).map(x=>x.full);
+      wrong=wrong.concat(extra);
+    }
     let opts=shuffle([a.full,...wrong]);
     return{acronym:a.acronym,full:a.full,cat:a.cat,subcat:a.subcat,link:a.link,options:opts,correctIdx:opts.indexOf(a.full)};
   });
