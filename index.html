@@ -327,8 +327,8 @@ function startQuiz(){
   if(state.mode==='glueck'){startGlueck();return}
   // Multiple choice
   let pool=getFiltered();
-  if(pool.length<4)pool=getTopicFiltered(); // relax difficulty first, keep topic choice
-  if(pool.length<4){pool=ACRONYMS}
+  if(pool.length===0)pool=getTopicFiltered(); // relax difficulty first, keep topic choice
+  if(pool.length===0){pool=ACRONYMS} // only give up on the topic choice if it truly matched nothing
   const questions=buildMCQuestions(pool,10);
   state.quizData={questions,idx:0,score:0,streak:0,bestStreak:0,answers:[]};
   state.screen='mc-quiz';
@@ -519,8 +519,8 @@ function shareResult(){
 // ─── GLÜCKSRAD (Wheel of Fortune) ───
 function startGlueck(recursiveOnly){
   let pool=recursiveOnly?ACRONYMS.filter(a=>a.recursive):getFiltered();
-  if(!recursiveOnly&&pool.length<3)pool=getTopicFiltered(); // relax difficulty first, keep topic choice
-  if(pool.length<3)pool=recursiveOnly?ACRONYMS.filter(a=>a.recursive):ACRONYMS;
+  if(!recursiveOnly&&pool.length===0)pool=getTopicFiltered(); // relax difficulty first, keep topic choice
+  if(pool.length===0)pool=recursiveOnly?ACRONYMS.filter(a=>a.recursive):ACRONYMS; // only give up on the topic choice if it truly matched nothing
   state.glueckData={
     item:pickN(pool,1)[0],
     revealed:new Set(),
