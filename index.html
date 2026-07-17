@@ -79,8 +79,9 @@ const ACRONYMS = [
   {acronym:"BGP",full:"Border Gateway Protocol",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Border_Gateway_Protocol"},
   {acronym:"ISDN",full:"Integrated Services Digital Network",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Integrated_Services_Digital_Network"},
   {acronym:"DNS",full:"Domain Name System",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Domain_Name_System"},
-  {acronym:"HTTP",full:"HyperText Transfer Protocol",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol"},
-  {acronym:"HTTPS",full:"HyperText Transfer Protocol Secure",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/HTTPS"},
+  {acronym:"HTTP",full:"HyperText Transfer Protocol",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol"},
+  {acronym:"HTTPS",full:"HyperText Transfer Protocol Secure",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/HTTPS"},
+  {acronym:"URL",full:"Uniform Resource Locator",cat:"IT",subcat:"Web",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/URL"},
   {acronym:"UDP",full:"User Datagram Protocol",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/User_Datagram_Protocol"},
   {acronym:"SSH",full:"Secure Shell",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Secure_Shell"},
   {acronym:"TLS",full:"Transport Layer Security",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Transport_Layer_Security"},
@@ -93,11 +94,12 @@ const ACRONYMS = [
   {acronym:"MAC",full:"Media Access Control",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Media_Access_Control"},
   // IT → Hardware
   {acronym:"SSD",full:"Solid State Drive",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Solid-state_drive"},
-  {acronym:"CPU",full:"Central Processing Unit",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Central_processing_unit"},
-  {acronym:"GPU",full:"Graphics Processing Unit",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Graphics_processing_unit"},
+  {acronym:"CPU",full:"Central Processing Unit",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Central_processing_unit"},
+  {acronym:"GPU",full:"Graphics Processing Unit",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Graphics_processing_unit"},
   {acronym:"RAM",full:"Random Access Memory",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Random-access_memory"},
   {acronym:"HDD",full:"Hard Disk Drive",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Hard_disk_drive"},
   {acronym:"NIC",full:"Network Interface Card",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Network_interface_controller"},
+  {acronym:"USB",full:"Universal Serial Bus",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/USB"},
   {acronym:"PSU",full:"Power Supply Unit",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Power_supply_unit_(computer)"},
   {acronym:"BIOS",full:"Basic Input Output System",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/BIOS"},
   {acronym:"ROM",full:"Read-Only Memory",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Read-only_memory"},
@@ -141,14 +143,25 @@ const ACRONYMS = [
   {acronym:"CLI",full:"Command Line Interface",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Command-line_interface"},
   {acronym:"IDE",full:"Integrated Development Environment",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Integrated_development_environment"},
   {acronym:"SDK",full:"Software Development Kit",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Software_development_kit"},
-  // Recursive acronyms
+  // IT → Web
+  {acronym:"HTML",full:"HyperText Markup Language",cat:"IT",subcat:"Web",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/HTML"},
+  {acronym:"CSS",full:"Cascading Style Sheets",cat:"IT",subcat:"Web",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/CSS"},
+  {acronym:"PDF",full:"Portable Document Format",cat:"IT",subcat:"Web",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/PDF"},
+  // Recursive acronyms (some are also backronyms — a name repurposed after the
+  // fact rather than designed recursively from the start; see Acronym Types)
   {acronym:"GNU",full:"GNU's Not Unix",cat:"IT",subcat:"Recursive",source:"wikipedia",recursive:true,link:"https://en.wikipedia.org/wiki/GNU"},
-  {acronym:"WINE",full:"Wine Is Not an Emulator",cat:"IT",subcat:"Recursive",source:"wikipedia",recursive:true,link:"https://en.wikipedia.org/wiki/Wine_(software)"},
-  {acronym:"YAML",full:"YAML Ain't Markup Language",cat:"SW Dev",subcat:"Recursive",source:"wikipedia",recursive:true,link:"https://en.wikipedia.org/wiki/YAML"},
-  {acronym:"PHP",full:"PHP: Hypertext Preprocessor",cat:"SW Dev",subcat:"Recursive",source:"wikipedia",recursive:true,link:"https://en.wikipedia.org/wiki/PHP"},
-  {acronym:"PING",full:"Packet InterNet Groper",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Ping_(networking_utility)"},
+  {acronym:"WINE",full:"Wine Is Not an Emulator",cat:"IT",subcat:"Recursive",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/Wine_(software)"},
+  {acronym:"YAML",full:"YAML Ain't Markup Language",cat:"SW Dev",subcat:"Recursive",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/YAML"},
+  {acronym:"PHP",full:"PHP: Hypertext Preprocessor",cat:"SW Dev",subcat:"Recursive",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/PHP"},
+  {acronym:"PING",full:"Packet InterNet Groper",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,backronym:true,link:"https://en.wikipedia.org/wiki/Ping_(networking_utility)"},
   {acronym:"PIP",full:"Pip Installs Packages",cat:"SW Dev",subcat:"Recursive",source:"wikipedia",recursive:true,link:"https://en.wikipedia.org/wiki/Pip_(package_manager)"},
   {acronym:"Hurd",full:"Hird of Unix-Replacing Daemons",cat:"IT",subcat:"Recursive",source:"wikipedia",recursive:true,link:"https://en.wikipedia.org/wiki/GNU_Hurd"},
+  {acronym:"RPM",full:"RPM Package Manager",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/RPM_Package_Manager"},
+  {acronym:"XBMC",full:"XBMC Media Center",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/Kodi_(software)"},
+  // Apronyms — acronyms that are also real, fitting words
+  {acronym:"SCUBA",full:"Self-Contained Underwater Breathing Apparatus",cat:"Science",subcat:"Apronym",source:"wikipedia",recursive:false,apronym:true,link:"https://en.wikipedia.org/wiki/Scuba_diving"},
+  {acronym:"RADAR",full:"Radio Detection and Ranging",cat:"Science",subcat:"Apronym",source:"wikipedia",recursive:false,apronym:true,link:"https://en.wikipedia.org/wiki/Radar"},
+  {acronym:"LASER",full:"Light Amplification by Stimulated Emission of Radiation",cat:"Science",subcat:"Apronym",source:"wikipedia",recursive:false,apronym:true,link:"https://en.wikipedia.org/wiki/Laser"},
   // Misc → Fun (easter eggs, not part of any quiz difficulty tier — DB Browser only)
   {acronym:"WAF",full:"Wife Acceptance Factor",cat:"Misc",subcat:"Fun",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Wife_acceptance_factor"},
   // German-only abbreviations
@@ -183,14 +196,42 @@ const ACRONYMS = [
 
 // ─── I18N ───
 const I18N = {
-  en:{boot:"booting quiz engine v2.6.0 … OK",tagline:"Do you actually know what TCP stands for? Prove it.",topics:"topics",difficulty:"difficulty",junior:"junior",senior:"senior",greybeard:"greybeard",runQuiz:"RUN QUIZ",questions:"questions",highScore:"high score",expandAcronym:"expand the acronym:",topic:"topic",worth:"worth",keys:"keys: A–D to answer · ENTER to confirm",submit:"SUBMIT",streak:"streak",score:"score",processExited:"process exited · run complete",rank:"rank",bestStreak:"best streak",newHighScore:"new high score!",runLog:"run.log",runAgain:"RUN AGAIN",shareResult:"share result",chooseMode:"choose mode",multipleChoice:"Multiple Choice",gluecksrad:"Fill in the Blanks",recursive:"Recursive Acronyms",dbBrowser:"DB Browser",browse:"browse the acronym DB",search:"search acronyms...",all:"All",recursiveInfo:"A recursive acronym is an acronym that refers to itself. The first letter (or word) of the expansion is the acronym itself.",example:"Example",allRecursive:"All Recursive Acronyms",pickLetter:"pick a letter (click or type)",solveBtn:"SOLVE",solvePlaceholder:"type the full expansion...",solveBtnConfirm:"CONFIRM",lives:"lives",points:"pts",noResults:"no results",cat:"Cat",subcat:"SubCat",source:"Source",flag:"Flag",link:"Link",language:"Language",back:"← back",allCats:"all categories",cancel:"✕ quit",cancelKey:"ESC to quit"},
-  de:{boot:"Quiz-Engine v2.6.0 wird gestartet … OK",tagline:"Weisst du wirklich, wofür TCP steht? Beweise es.",topics:"Themen",difficulty:"Schwierigkeit",junior:"Anfänger",senior:"Fortgeschritten",greybeard:"Profi",runQuiz:"QUIZ STARTEN",questions:"Fragen",highScore:"Highscore",expandAcronym:"Vom Akronym ausschreiben:",topic:"Thema",worth:"Wert",keys:"Tasten: A–D zum Antworten · ENTER zum Bestätigen",submit:"BESTÄTIGEN",streak:"Serie",score:"Punkte",processExited:"Prozess beendet · Durchlauf fertig",rank:"Rang",bestStreak:"beste Serie",newHighScore:"neuer Highscore!",runLog:"run.log",runAgain:"NOCHMALS",shareResult:"Ergebnis teilen",chooseMode:"Modus wählen",multipleChoice:"Multiple Choice",gluecksrad:"Lückentext",recursive:"Rekursive Akronyme",dbBrowser:"DB-Browser",browse:"Akronym-Datenbank durchsuchen",search:"Akronyme suchen...",all:"Alle",recursiveInfo:"Ein rekursives Akronym ist ein Akronym, das auf sich selbst verweist. Der erste Buchstabe (oder das erste Wort) der Ausschreibung ist das Akronym selbst.",example:"Beispiel",allRecursive:"Alle rekursiven Akronyme",pickLetter:"Buchstabe wählen (klicken oder tippen)",solveBtn:"LÖSEN",solvePlaceholder:"volle Ausschreibung eingeben...",solveBtnConfirm:"BESTÄTIGEN",lives:"Leben",points:"Pkt",noResults:"keine Ergebnisse",cat:"Kat",subcat:"SubKat",source:"Quelle",flag:"Flag",link:"Link",language:"Sprache",back:"← zurück",allCats:"alle Kategorien",cancel:"✕ beenden",cancelKey:"ESC zum Beenden"}
+  en:{boot:"booting quiz engine v2.6.0 … OK",tagline:"Do you actually know what TCP stands for? Prove it.",topics:"topics",difficulty:"difficulty",junior:"junior",senior:"senior",greybeard:"greybeard",runQuiz:"RUN QUIZ",questions:"questions",highScore:"high score",expandAcronym:"expand the acronym:",topic:"topic",worth:"worth",keys:"keys: A–D to answer · ENTER to confirm",submit:"SUBMIT",streak:"streak",score:"score",processExited:"process exited · run complete",rank:"rank",bestStreak:"best streak",newHighScore:"new high score!",runLog:"run.log",runAgain:"RUN AGAIN",shareResult:"share result",chooseMode:"choose mode",multipleChoice:"Multiple Choice",gluecksrad:"Fill in the Blanks",acronymTypes:"Acronym Types",dbBrowser:"DB Browser",browse:"browse the acronym DB",search:"search acronyms...",all:"All",example:"Example",pickLetter:"pick a letter (click or type)",solveBtn:"SOLVE",solvePlaceholder:"type the full expansion...",solveBtnConfirm:"CONFIRM",lives:"lives",points:"pts",noResults:"no results",cat:"Cat",subcat:"SubCat",source:"Source",flag:"Flag",link:"Link",language:"Language",back:"← back",allCats:"all categories",cancel:"✕ quit",cancelKey:"ESC to quit"},
+  de:{boot:"Quiz-Engine v2.6.0 wird gestartet … OK",tagline:"Weisst du wirklich, wofür TCP steht? Beweise es.",topics:"Themen",difficulty:"Schwierigkeit",junior:"Anfänger",senior:"Fortgeschritten",greybeard:"Profi",runQuiz:"QUIZ STARTEN",questions:"Fragen",highScore:"Highscore",expandAcronym:"Vom Akronym ausschreiben:",topic:"Thema",worth:"Wert",keys:"Tasten: A–D zum Antworten · ENTER zum Bestätigen",submit:"BESTÄTIGEN",streak:"Serie",score:"Punkte",processExited:"Prozess beendet · Durchlauf fertig",rank:"Rang",bestStreak:"beste Serie",newHighScore:"neuer Highscore!",runLog:"run.log",runAgain:"NOCHMALS",shareResult:"Ergebnis teilen",chooseMode:"Modus wählen",multipleChoice:"Multiple Choice",gluecksrad:"Lückentext",acronymTypes:"Akronym-Arten",dbBrowser:"DB-Browser",browse:"Akronym-Datenbank durchsuchen",search:"Akronyme suchen...",all:"Alle",example:"Beispiel",pickLetter:"Buchstabe wählen (klicken oder tippen)",solveBtn:"LÖSEN",solvePlaceholder:"volle Ausschreibung eingeben...",solveBtnConfirm:"BESTÄTIGEN",lives:"Leben",points:"Pkt",noResults:"keine Ergebnisse",cat:"Kat",subcat:"SubKat",source:"Quelle",flag:"Flag",link:"Link",language:"Sprache",back:"← zurück",allCats:"alle Kategorien",cancel:"✕ beenden",cancelKey:"ESC zum Beenden"}
+};
+
+// ─── ACRONYM TYPES (recursive · backronym · initialism · apronym) ───
+// Each key is a boolean field on ACRONYMS entries; "example" picks which
+// entry anchors the explanation card.
+const ACRONYM_TYPES=[
+  {key:'recursive',example:'GNU'},
+  {key:'backronym',example:'PING'},
+  {key:'initialism',example:'CPU'},
+  {key:'apronym',example:'SCUBA'}
+];
+const TYPE_COPY={
+  recursive:{
+    en:{title:"Recursive Acronyms",info:"A recursive acronym is an acronym that refers to itself. The first letter (or word) of the expansion is the acronym itself.",list:"All Recursive Acronyms"},
+    de:{title:"Rekursive Akronyme",info:"Ein rekursives Akronym ist ein Akronym, das auf sich selbst verweist. Der erste Buchstabe (oder das erste Wort) der Ausschreibung ist das Akronym selbst.",list:"Alle rekursiven Akronyme"}
+  },
+  backronym:{
+    en:{title:"Backronyms",info:"A backronym is the reverse of a normal acronym: the short name came first, and a fitting expansion was invented for it afterwards — sometimes genuine folklore, sometimes a joke.",list:"All Backronyms"},
+    de:{title:"Backronyme",info:"Ein Backronym ist das Gegenteil eines gewöhnlichen Akronyms: Der kurze Name existierte zuerst, die passende Ausschreibung wurde erst im Nachhinein erfunden – manchmal als echte Überlieferung, manchmal als Scherz.",list:"Alle Backronyme"}
+  },
+  initialism:{
+    en:{title:"Initialisms",info:"An initialism is an abbreviation pronounced letter by letter (C-P-U, H-T-T-P) rather than as a single word — unlike a true acronym like NASA or RADAR.",list:"All Initialisms"},
+    de:{title:"Initialwörter",info:"Ein Initialwort ist eine Abkürzung, die Buchstabe für Buchstabe ausgesprochen wird (C-P-U, H-T-T-P) statt als zusammenhängendes Wort – im Gegensatz zu einem echten Akronym wie NASA oder RADAR.",list:"Alle Initialwörter"}
+  },
+  apronym:{
+    en:{title:"Apronyms",info:"An apronym is an acronym that also spells a real, fitting word — SCUBA reads like \"scuba\", RADAR and LASER became everyday words in their own right.",list:"All Apronyms"},
+    de:{title:"Apronyme",info:"Ein Apronym ist ein Akronym, das gleichzeitig ein echtes, passendes Wort ergibt – SCUBA liest sich wie „scuba“, RADAR und LASER wurden selbst zu Alltagswörtern.",list:"Alle Apronyme"}
+  }
 };
 
 // ─── DIFFICULTY MAP ───
 const DIFFICULTY = {
-  junior:["TCP","DNS","HTTP","HTTPS","API","RAM","CPU","GPU","SSD","HDD","ROM","URL","USB","PDF","HTML","CSS","PHP","WLAN","GUI","CLI","IDE","VCS","VPN","WLAN","DIN","TÜV","ADAC","GmbH","AG","PING"],
-  senior:["BGP","ISDN","SSH","TLS","NAT","OSPF","DHCP","ARP","ICMP","MAC","NIC","PSU","BIOS","UEFI","NVMe","CSRF","XSS","SQLi","DDoS","PKI","MFA","WAF","IaaS","PaaS","SaaS","FaaS","CDN","SDLC","SOLID","CI/CD","DRY","KISS","YAGNI","REST","OOP","MVC","ORM","TDD","DDD","SLO","SLA","CRUD","SDK","NLP","CNN","LLM","GAN","MLP","ANN","BERT","AGI","LSTM","RNN","StVO","ÖPNV","GEZ","MwSt","BAföG"],
+  junior:["TCP","DNS","HTTP","HTTPS","API","RAM","CPU","GPU","SSD","HDD","ROM","URL","USB","PDF","HTML","CSS","PHP","WLAN","GUI","CLI","IDE","VCS","VPN","WLAN","DIN","TÜV","ADAC","GmbH","AG","PING","SCUBA","RADAR","LASER"],
+  senior:["BGP","ISDN","SSH","TLS","NAT","OSPF","DHCP","ARP","ICMP","MAC","NIC","PSU","BIOS","UEFI","NVMe","CSRF","XSS","SQLi","DDoS","PKI","MFA","WAF","IaaS","PaaS","SaaS","FaaS","CDN","SDLC","SOLID","CI/CD","DRY","KISS","YAGNI","REST","OOP","MVC","ORM","TDD","DDD","SLO","SLA","CRUD","SDK","NLP","CNN","LLM","GAN","MLP","ANN","BERT","AGI","LSTM","RNN","StVO","ÖPNV","GEZ","MwSt","BAföG","RPM","XBMC"],
   greybeard:["xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","Stasi","FDJ","VEB","DVP"]
 };
 
@@ -257,7 +298,8 @@ function render(){
   else if(state.screen==='mc-quiz')renderMCQuiz(el);
   else if(state.screen==='results')renderResults(el);
   else if(state.screen==='glueck')renderGlueck(el);
-  else if(state.screen==='recursive')renderRecursive(el);
+  else if(state.screen==='types')renderTypesHub(el);
+  else if(state.screen==='typeDetail')renderTypeDetail(el);
   else if(state.screen==='db')renderDB(el);
   app.appendChild(el);
 }
@@ -303,7 +345,7 @@ function renderStart(root){
           <div style="display:flex;flex-wrap:wrap;gap:10px">
             <button class="tag ${state.mode==='mc'?'on':''}" onclick="setMode('mc')">${t().multipleChoice}</button>
             <button class="tag ${state.mode==='glueck'?'on':''}" onclick="setMode('glueck')">${t().gluecksrad}</button>
-            <button class="tag ${state.mode==='recursive'?'on':''}" onclick="setMode('recursive')">${t().recursive}</button>
+            <button class="tag ${state.mode==='types'?'on':''}" onclick="setMode('types')">${t().acronymTypes}</button>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:20px;margin-top:8px;flex-wrap:wrap">
@@ -323,7 +365,7 @@ function setMode(m){state.mode=m;render()}
 function toggleTopic(k){if(state.topics.has(k))state.topics.delete(k);else state.topics.add(k);render()}
 
 function startQuiz(){
-  if(state.mode==='recursive'){state.screen='recursive';render();return}
+  if(state.mode==='types'){state.screen='types';render();return}
   if(state.mode==='glueck'){startGlueck();return}
   // Multiple choice
   let pool=getFiltered();
@@ -539,10 +581,10 @@ function shareResult(){
 }
 
 // ─── GLÜCKSRAD (Wheel of Fortune) ───
-function startGlueck(recursiveOnly){
-  let pool=recursiveOnly?ACRONYMS.filter(a=>a.recursive):getFiltered();
-  if(!recursiveOnly&&pool.length===0)pool=getTopicFiltered(); // relax difficulty first, keep topic choice
-  if(pool.length===0)pool=recursiveOnly?ACRONYMS.filter(a=>a.recursive):ACRONYMS; // only give up on the topic choice if it truly matched nothing
+function startGlueck(typeKey){
+  let pool=typeKey?ACRONYMS.filter(a=>a[typeKey]):getFiltered();
+  if(!typeKey&&pool.length===0)pool=getTopicFiltered(); // relax difficulty first, keep topic choice
+  if(pool.length===0)pool=typeKey?ACRONYMS.filter(a=>a[typeKey]):ACRONYMS; // only give up on the topic choice if it truly matched nothing
   state.glueckData={
     item:pickN(pool,1)[0],
     revealed:new Set(),
@@ -552,7 +594,7 @@ function startGlueck(recursiveOnly){
     solved:false,
     showSolve:false,
     history:[],
-    recursiveOnly:!!recursiveOnly
+    typeKey:typeKey||null
   };
   state.screen='glueck';
   render();
@@ -689,29 +731,60 @@ function glueckResult(won,g){
         </div>
         <div style="font-size:14px;color:#7d8a7d">${t().score}: <span style="color:#4ade80">${g.score}</span> · ${t().lives}: ${g.lives}</div>
         <div style="display:flex;gap:14px;flex-wrap:wrap">
-          <button class="btn" onclick="startGlueck(${g.recursiveOnly})">↻ ${t().runAgain}</button>
-          <button class="btn-outline" onclick="state.screen='${g.recursiveOnly?'recursive':'start'}';state.glueckData=null;render()">← ${t().back}</button>
+          <button class="btn" onclick="startGlueck('${g.typeKey||''}')">↻ ${t().runAgain}</button>
+          <button class="btn-outline" onclick="state.screen='${g.typeKey?'typeDetail':'start'}';state.glueckData=null;render()">← ${t().back}</button>
         </div>
       </div>
     </div>`;
 }
 
-// ─── RECURSIVE ACRONYMS (info · list · Fill in the Blanks quiz) ───
-function renderRecursive(root){
-  const recs=ACRONYMS.filter(a=>a.recursive);
-  const ex=recs.find(a=>a.acronym==='GNU')||recs[0];
+// ─── ACRONYM TYPES (hub · detail with info/list/Fill in the Blanks quiz) ───
+function openType(key){state.activeType=key;state.screen='typeDetail';render()}
+
+function renderTypesHub(root){
+  root.innerHTML=`
+    <div class="term">
+      <div class="term-bar">
+        <span class="term-prompt">user@quizbox:~$ man acronym-types</span>
+      </div>
+      <div class="term-body">
+        <div style="font-size:14px;color:#4ade80;margin-bottom:4px">&gt; ${t().acronymTypes}</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          ${ACRONYM_TYPES.map(ty=>{
+            const copy=TYPE_COPY[ty.key][state.lang];
+            const count=ACRONYMS.filter(a=>a[ty.key]).length;
+            return `<div class="option" onclick="openType('${ty.key}')">
+              <span style="font-weight:700;color:#e8f5e8">${copy.title}</span>
+              <span style="margin-left:auto;color:#5c675c;font-size:13px">${count}</span>
+            </div>`;
+          }).join('')}
+        </div>
+        <div style="display:flex;gap:14px">
+          <button class="btn-outline" onclick="state.screen='start';render()">${t().back}</button>
+        </div>
+      </div>
+    </div>`;
+  document.onkeydown=null;
+}
+
+function renderTypeDetail(root){
+  const key=state.activeType;
+  const cfg=ACRONYM_TYPES.find(ty=>ty.key===key);
+  const copy=TYPE_COPY[key][state.lang];
+  const items=ACRONYMS.filter(a=>a[key]);
+  const ex=items.find(a=>a.acronym===cfg.example)||items[0];
   root.innerHTML=`
     <div class="term">
       <div class="term-bar">
         <div style="display:flex;align-items:center;justify-content:space-between;width:100%">
-          <span class="term-prompt">user@quizbox:~$ man recursive-acronyms</span>
-          <span style="font-size:13px;color:#5c675c">${recs.length} entries</span>
+          <span class="term-prompt">user@quizbox:~$ man ${key}</span>
+          <span style="font-size:13px;color:#5c675c">${items.length} entries</span>
         </div>
       </div>
       <div class="term-body">
         <div>
-          <div style="font-size:14px;color:#4ade80;margin-bottom:10px">&gt; ${t().recursive}</div>
-          <div style="font-size:15px;color:#c9d1c9;line-height:1.6">${t().recursiveInfo}</div>
+          <div style="font-size:14px;color:#4ade80;margin-bottom:10px">&gt; ${copy.title}</div>
+          <div style="font-size:15px;color:#c9d1c9;line-height:1.6">${copy.info}</div>
           <div style="margin-top:14px;padding:14px 18px;border:1px solid #2b352c;border-radius:8px;background:#10140f">
             <span style="color:#5c675c;font-size:13px">${t().example}: </span>
             <span style="color:#e8f5e8;font-weight:700">${ex.acronym}</span>
@@ -719,9 +792,9 @@ function renderRecursive(root){
           </div>
         </div>
         <div>
-          <div style="font-size:13px;color:#5c675c;margin-bottom:10px">--${t().allRecursive}</div>
+          <div style="font-size:13px;color:#5c675c;margin-bottom:10px">--${copy.list}</div>
           <div class="scroll">
-            ${recs.map(a=>`
+            ${items.map(a=>`
               <div class="db-row">
                 <span style="color:#facc15;font-weight:700;width:72px;flex-shrink:0">${a.acronym}</span>
                 <span style="color:#c9d1c9;flex:1">${a.full}</span>
@@ -731,8 +804,8 @@ function renderRecursive(root){
           </div>
         </div>
         <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
-          <button class="btn" onclick="startGlueck(true)">▶ ${t().gluecksrad}</button>
-          <button class="btn-outline" onclick="state.screen='start';render()">${t().back}</button>
+          <button class="btn" onclick="startGlueck('${key}')">▶ ${t().gluecksrad}</button>
+          <button class="btn-outline" onclick="state.screen='types';render()">${t().back}</button>
         </div>
       </div>
     </div>`;
