@@ -176,6 +176,7 @@ const ACRONYMS = [
   {acronym:"SED",full:"Sozialistische Einheitspartei Deutschlands",cat:"DDR",subcat:"History",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Socialist_Unity_Party_of_Germany"},
   {acronym:"NVA",full:"Nationale Volksarmee",cat:"DDR",subcat:"History",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/National_People%27s_Army"},
   {acronym:"MfS",full:"Ministerium für Staatssicherheit",cat:"DDR",subcat:"History",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Stasi"},
+  {acronym:"Stasi",full:"Staatssicherheit",cat:"DDR",subcat:"History",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Stasi"},
   {acronym:"FDJ",full:"Freie Deutsche Jugend",cat:"DDR",subcat:"History",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Free_German_Youth"},
   {acronym:"VEB",full:"Volkseigener Betrieb",cat:"DDR",subcat:"History",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Volkseigener_Betrieb"},
   {acronym:"DVP",full:"Deutsche Volkspolizei",cat:"DDR",subcat:"History",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Volkspolizei"},
@@ -191,7 +192,7 @@ const I18N = {
 const DIFFICULTY = {
   junior:["TCP","DNS","HTTP","HTTPS","API","RAM","CPU","GPU","SSD","HDD","ROM","URL","USB","PDF","HTML","CSS","PHP","WLAN","GUI","CLI","IDE","VCS","VPN","WLAN","DIN","TÜV","ADAC","GmbH","AG"],
   senior:["BGP","ISDN","SSH","TLS","NAT","OSPF","DHCP","ARP","ICMP","MAC","NIC","PSU","BIOS","UEFI","NVMe","CSRF","XSS","SQLi","DDoS","PKI","MFA","WAF","IaaS","PaaS","SaaS","FaaS","CDN","SDLC","SOLID","CI/CD","DRY","KISS","YAGNI","REST","OOP","MVC","ORM","TDD","DDD","SLO","SLA","CRUD","SDK","NLP","CNN","LLM","GAN","MLP","ANN","BERT","AGI","LSTM","RNN","StVO","ÖPNV","GEZ","MwSt","BAföG"],
-  greybeard:["xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PING","BING","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","FDJ","VEB","DVP"]
+  greybeard:["xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PING","BING","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","Stasi","FDJ","VEB","DVP"]
 };
 
 // ─── HELPERS ───
@@ -343,7 +344,7 @@ function startQuiz(){
 const VOCAB=(()=>{
   const m={};
   ACRONYMS.forEach(a=>a.full.split(/[\s-]+/).forEach(raw=>{
-    const w=raw.replace(/[^A-Za-z']/g,'');
+    const w=raw.replace(/[^\p{L}']/gu,'');
     if(!w)return;
     const k=w[0].toUpperCase();
     (m[k]=m[k]||new Set()).add(w);
@@ -352,13 +353,17 @@ const VOCAB=(()=>{
 })();
 
 // Short function words carry acronym letters (Wine Is Not an Emulator) but read
-// badly when swapped — keep them verbatim so decoys stay plausible.
-const STOPWORDS=/^(a|an|as|of|the|is|to|not|and|for|from|in|on)$/i;
+// badly when swapped — keep them verbatim so decoys stay plausible. Covers both
+// English and German fillers since the DB's "full" text is whatever language the
+// entry itself is written in, independent of the UI language toggle.
+const STOPWORDS=/^(a|an|as|of|the|is|to|not|and|for|from|in|on|der|die|das|den|dem|des|ein|eine|einer|eines|einem|einen|und|für|von|zu|zur|zum|mit|auf|bei|nach|vor|über|unter|durch|ohne|um|im|am|ins|aus|als|oder|wie)$/i;
 
 // Replace one hyphen-part's leading letters with a different same-initial word,
 // preserving trailing punctuation (commas, colons, 's) and non-letter tokens.
+// Uses \p{L} (not A-Za-z) so umlauts/ß in German words (für, Öffentlicher) are
+// captured as part of the head instead of being split off and mangled.
 function subPart(part){
-  const mm=part.match(/^([A-Za-z]+)(.*)$/);
+  const mm=part.match(/^([\p{L}]+)(.*)$/u);
   if(!mm)return part;                       // punctuation / numbers → keep
   const head=mm[1],tail=mm[2];
   if(STOPWORDS.test(head))return part;
