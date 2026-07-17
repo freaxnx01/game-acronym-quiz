@@ -224,11 +224,15 @@ function getCategories(){
 }
 
 // Filter acronyms by selected topics + difficulty
-function getFiltered(){
-  let pool=ACRONYMS.filter(a=>{
+function getTopicFiltered(){
+  return ACRONYMS.filter(a=>{
     if(state.topics.size>0){let key=a.cat+'/'  +a.subcat;if(!state.topics.has(key))return false}
     return true;
   });
+}
+
+function getFiltered(){
+  let pool=getTopicFiltered();
   let diff=DIFFICULTY[state.difficulty];
   if(diff && state.difficulty!=='greybeard'){
     pool=pool.filter(a=>diff.includes(a.acronym));
@@ -323,6 +327,7 @@ function startQuiz(){
   if(state.mode==='glueck'){startGlueck();return}
   // Multiple choice
   let pool=getFiltered();
+  if(pool.length<4)pool=getTopicFiltered(); // relax difficulty first, keep topic choice
   if(pool.length<4){pool=ACRONYMS}
   const questions=buildMCQuestions(pool,10);
   state.quizData={questions,idx:0,score:0,streak:0,bestStreak:0,answers:[]};
@@ -514,6 +519,7 @@ function shareResult(){
 // ─── GLÜCKSRAD (Wheel of Fortune) ───
 function startGlueck(recursiveOnly){
   let pool=recursiveOnly?ACRONYMS.filter(a=>a.recursive):getFiltered();
+  if(!recursiveOnly&&pool.length<3)pool=getTopicFiltered(); // relax difficulty first, keep topic choice
   if(pool.length<3)pool=recursiveOnly?ACRONYMS.filter(a=>a.recursive):ACRONYMS;
   state.glueckData={
     item:pickN(pool,1)[0],
