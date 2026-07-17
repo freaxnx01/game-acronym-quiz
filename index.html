@@ -336,20 +336,31 @@ function startQuiz(){
   render();
 }
 
+// Categories whose "full" text is German — decoys for these must only swap in
+// other German words, never English tech vocabulary, regardless of UI language.
+const GERMAN_CATS=new Set(["German","Swiss Military","Swiss Law","DDR"]);
+function acronymLang(a){return GERMAN_CATS.has(a.cat)?'de':'en'}
+
 // Clean vocabulary harvested from every expansion, split on whitespace AND
 // hyphens (so "Short-Term" yields both "Short" and "Term"), stripped to letters
-// and bucketed by first letter. Used to build decoys that share the acronym's
-// exact initialism — real MC decoys must spell the same acronym, otherwise the
-// answer is just initials-matching against unrelated expansions.
+// and bucketed by first letter + language. Used to build decoys that share the
+// acronym's exact initialism — real MC decoys must spell the same acronym,
+// otherwise the answer is just initials-matching against unrelated expansions.
+// Kept per-language so a German entry's decoys never pull in an English word.
 const VOCAB=(()=>{
   const m={};
-  ACRONYMS.forEach(a=>a.full.split(/[\s-]+/).forEach(raw=>{
-    const w=raw.replace(/[^\p{L}']/gu,'');
-    if(!w)return;
-    const k=w[0].toUpperCase();
-    (m[k]=m[k]||new Set()).add(w);
-  }));
-  const out={};for(const k in m)out[k]=[...m[k]];return out;
+  ACRONYMS.forEach(a=>{
+    const lang=acronymLang(a);
+    a.full.split(/[\s-]+/).forEach(raw=>{
+      const w=raw.replace(/[^\p{L}']/gu,'');
+      if(!w)return;
+      const k=w[0].toUpperCase();
+      m[k]=m[k]||{en:new Set(),de:new Set()};
+      m[k][lang].add(w);
+    });
+  });
+  const out={};for(const k in m)out[k]={en:[...m[k].en],de:[...m[k].de]};
+  return out;
 })();
 
 // Short function words carry acronym letters (Wine Is Not an Emulator) but read
@@ -358,30 +369,32 @@ const VOCAB=(()=>{
 // entry itself is written in, independent of the UI language toggle.
 const STOPWORDS=/^(a|an|as|of|the|is|to|not|and|for|from|in|on|der|die|das|den|dem|des|ein|eine|einer|eines|einem|einen|und|für|von|zu|zur|zum|mit|auf|bei|nach|vor|über|unter|durch|ohne|um|im|am|ins|aus|als|oder|wie)$/i;
 
-// Replace one hyphen-part's leading letters with a different same-initial word,
-// preserving trailing punctuation (commas, colons, 's) and non-letter tokens.
-// Uses \p{L} (not A-Za-z) so umlauts/ß in German words (für, Öffentlicher) are
-// captured as part of the head instead of being split off and mangled.
-function subPart(part){
+// Replace one hyphen-part's leading letters with a different same-initial word
+// from the SAME language, preserving trailing punctuation (commas, colons, 's)
+// and non-letter tokens. Uses \p{L} (not A-Za-z) so umlauts/ß in German words
+// (für, Öffentlicher) are captured as part of the head instead of being split
+// off and mangled.
+function subPart(part,lang){
   const mm=part.match(/^([\p{L}]+)(.*)$/u);
   if(!mm)return part;                       // punctuation / numbers → keep
   const head=mm[1],tail=mm[2];
   if(STOPWORDS.test(head))return part;
-  const alts=(VOCAB[head[0].toUpperCase()]||[]).filter(x=>x.toUpperCase()!==head.toUpperCase());
+  const bucket=VOCAB[head[0].toUpperCase()];
+  const alts=(bucket?bucket[lang]:[]).filter(x=>x.toUpperCase()!==head.toUpperCase());
   return (alts.length?alts[Math.floor(Math.random()*alts.length)]:head)+tail;
 }
 
 // Build a plausible fake expansion with the SAME whitespace/hyphen/initial
 // skeleton as the real one → the same acronym derivation yields the same
 // acronym (e.g. "Long Short-Term Memory" → another L-S-T-M expansion).
-function makeFakeExpansion(real){
-  return real.split(/\s+/).map(tok=>tok.split('-').map(subPart).join('-')).join(' ');
+function makeFakeExpansion(real,lang){
+  return real.split(/\s+/).map(tok=>tok.split('-').map(p=>subPart(p,lang)).join('-')).join(' ');
 }
 
-function makeDistractors(real,count){
+function makeDistractors(real,count,lang){
   const out=new Set();
   for(let g=0;out.size<count&&g<count*20;g++){
-    const fake=makeFakeExpansion(real);
+    const fake=makeFakeExpansion(real,lang);
     if(fake!==real)out.add(fake);
   }
   return [...out];
@@ -390,11 +403,16 @@ function makeDistractors(real,count){
 function buildMCQuestions(pool,n){
   let picked=pickN(pool,n);
   return picked.map(a=>{
-    let wrong=makeDistractors(a.full,3);
+    const lang=acronymLang(a);
+    let wrong=makeDistractors(a.full,3,lang);
     // Fallback for short expansions with too little same-initial vocabulary:
-    // top up with other acronyms' real expansions (rare).
+    // top up with other acronyms' real expansions (rare). Prefer same-language
+    // entries first so the fallback decoys don't mix languages either.
     if(wrong.length<3){
-      const extra=pickN(pool.filter(x=>x.acronym!==a.acronym&&x.full!==a.full&&!wrong.includes(x.full)),3-wrong.length).map(x=>x.full);
+      const candidates=pool.filter(x=>x.acronym!==a.acronym&&x.full!==a.full&&!wrong.includes(x.full));
+      const sameLang=candidates.filter(x=>acronymLang(x)===lang);
+      const extraPool=sameLang.length>=3-wrong.length?sameLang:candidates;
+      const extra=pickN(extraPool,3-wrong.length).map(x=>x.full);
       wrong=wrong.concat(extra);
     }
     let opts=shuffle([a.full,...wrong]);
