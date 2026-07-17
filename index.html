@@ -154,8 +154,8 @@ const ACRONYMS = [
 
 // ─── I18N ───
 const I18N = {
-  en:{boot:"booting quiz engine v2.6.0 … OK",tagline:"Do you actually know what TCP stands for? Prove it.",topics:"topics",difficulty:"difficulty",junior:"junior",senior:"senior",greybeard:"greybeard",runQuiz:"RUN QUIZ",questions:"questions",highScore:"high score",expandAcronym:"expand the acronym:",topic:"topic",worth:"worth",keys:"keys: A–D to answer · ENTER to confirm",submit:"SUBMIT",streak:"streak",score:"score",processExited:"process exited · run complete",rank:"rank",bestStreak:"best streak",newHighScore:"new high score!",runLog:"run.log",runAgain:"RUN AGAIN",shareResult:"share result",chooseMode:"choose mode",multipleChoice:"Multiple Choice",gluecksrad:"Fill in the Blanks",recursive:"Recursive Acronyms",dbBrowser:"DB Browser",browse:"browse the acronym DB",search:"search acronyms...",all:"All",recursiveInfo:"A recursive acronym is an acronym that refers to itself. The first letter (or word) of the expansion is the acronym itself.",example:"Example",allRecursive:"All Recursive Acronyms",pickLetter:"pick a letter (click or type)",solveBtn:"SOLVE",solvePlaceholder:"type the full expansion...",solveBtnConfirm:"CONFIRM",lives:"lives",points:"pts",noResults:"no results",cat:"Cat",subcat:"SubCat",source:"Source",flag:"Flag",link:"Link",language:"Language",back:"← back",allCats:"all categories"},
-  de:{boot:"Quiz-Engine v2.6.0 wird gestartet … OK",tagline:"Weisst du wirklich, wofür TCP steht? Beweise es.",topics:"Themen",difficulty:"Schwierigkeit",junior:"Anfänger",senior:"Fortgeschritten",greybeard:"Profi",runQuiz:"QUIZ STARTEN",questions:"Fragen",highScore:"Highscore",expandAcronym:"Vom Akronym ausschreiben:",topic:"Thema",worth:"Wert",keys:"Tasten: A–D zum Antworten · ENTER zum Bestätigen",submit:"BESTÄTIGEN",streak:"Serie",score:"Punkte",processExited:"Prozess beendet · Durchlauf fertig",rank:"Rang",bestStreak:"beste Serie",newHighScore:"neuer Highscore!",runLog:"run.log",runAgain:"NOCHMALS",shareResult:"Ergebnis teilen",chooseMode:"Modus wählen",multipleChoice:"Multiple Choice",gluecksrad:"Lückentext",recursive:"Rekursive Akronyme",dbBrowser:"DB-Browser",browse:"Akronym-Datenbank durchsuchen",search:"Akronyme suchen...",all:"Alle",recursiveInfo:"Ein rekursives Akronym ist ein Akronym, das auf sich selbst verweist. Der erste Buchstabe (oder das erste Wort) der Ausschreibung ist das Akronym selbst.",example:"Beispiel",allRecursive:"Alle rekursiven Akronyme",pickLetter:"Buchstabe wählen (klicken oder tippen)",solveBtn:"LÖSEN",solvePlaceholder:"volle Ausschreibung eingeben...",solveBtnConfirm:"BESTÄTIGEN",lives:"Leben",points:"Pkt",noResults:"keine Ergebnisse",cat:"Kat",subcat:"SubKat",source:"Quelle",flag:"Flag",link:"Link",language:"Sprache",back:"← zurück",allCats:"alle Kategorien"}
+  en:{boot:"booting quiz engine v2.6.0 … OK",tagline:"Do you actually know what TCP stands for? Prove it.",topics:"topics",difficulty:"difficulty",junior:"junior",senior:"senior",greybeard:"greybeard",runQuiz:"RUN QUIZ",questions:"questions",highScore:"high score",expandAcronym:"expand the acronym:",topic:"topic",worth:"worth",keys:"keys: A–D to answer · ENTER to confirm",submit:"SUBMIT",streak:"streak",score:"score",processExited:"process exited · run complete",rank:"rank",bestStreak:"best streak",newHighScore:"new high score!",runLog:"run.log",runAgain:"RUN AGAIN",shareResult:"share result",chooseMode:"choose mode",multipleChoice:"Multiple Choice",gluecksrad:"Fill in the Blanks",recursive:"Recursive Acronyms",dbBrowser:"DB Browser",browse:"browse the acronym DB",search:"search acronyms...",all:"All",recursiveInfo:"A recursive acronym is an acronym that refers to itself. The first letter (or word) of the expansion is the acronym itself.",example:"Example",allRecursive:"All Recursive Acronyms",pickLetter:"pick a letter (click or type)",solveBtn:"SOLVE",solvePlaceholder:"type the full expansion...",solveBtnConfirm:"CONFIRM",lives:"lives",points:"pts",noResults:"no results",cat:"Cat",subcat:"SubCat",source:"Source",flag:"Flag",link:"Link",language:"Language",back:"← back",allCats:"all categories",cancel:"✕ quit",cancelKey:"ESC to quit"},
+  de:{boot:"Quiz-Engine v2.6.0 wird gestartet … OK",tagline:"Weisst du wirklich, wofür TCP steht? Beweise es.",topics:"Themen",difficulty:"Schwierigkeit",junior:"Anfänger",senior:"Fortgeschritten",greybeard:"Profi",runQuiz:"QUIZ STARTEN",questions:"Fragen",highScore:"Highscore",expandAcronym:"Vom Akronym ausschreiben:",topic:"Thema",worth:"Wert",keys:"Tasten: A–D zum Antworten · ENTER zum Bestätigen",submit:"BESTÄTIGEN",streak:"Serie",score:"Punkte",processExited:"Prozess beendet · Durchlauf fertig",rank:"Rang",bestStreak:"beste Serie",newHighScore:"neuer Highscore!",runLog:"run.log",runAgain:"NOCHMALS",shareResult:"Ergebnis teilen",chooseMode:"Modus wählen",multipleChoice:"Multiple Choice",gluecksrad:"Lückentext",recursive:"Rekursive Akronyme",dbBrowser:"DB-Browser",browse:"Akronym-Datenbank durchsuchen",search:"Akronyme suchen...",all:"Alle",recursiveInfo:"Ein rekursives Akronym ist ein Akronym, das auf sich selbst verweist. Der erste Buchstabe (oder das erste Wort) der Ausschreibung ist das Akronym selbst.",example:"Beispiel",allRecursive:"Alle rekursiven Akronyme",pickLetter:"Buchstabe wählen (klicken oder tippen)",solveBtn:"LÖSEN",solvePlaceholder:"volle Ausschreibung eingeben...",solveBtnConfirm:"BESTÄTIGEN",lives:"Leben",points:"Pkt",noResults:"keine Ergebnisse",cat:"Kat",subcat:"SubKat",source:"Quelle",flag:"Flag",link:"Link",language:"Sprache",back:"← zurück",allCats:"alle Kategorien",cancel:"✕ beenden",cancelKey:"ESC zum Beenden"}
 };
 
 // ─── DIFFICULTY MAP ───
@@ -282,6 +282,8 @@ function renderStart(root){
     </div>`;
 }
 
+function quitToStart(){document.onkeydown=null;state.screen='start';state.quizData=null;state.glueckData=null;render()}
+
 function setLang(l){state.lang=l;render()}
 function setDiff(d){state.difficulty=d;render()}
 function setMode(m){state.mode=m;render()}
@@ -376,6 +378,7 @@ function renderMCQuiz(root){
           <div style="display:flex;align-items:center;gap:18px">
             <span style="font-size:13px;color:#facc15">⚡ ${t().streak} ×${q.streak}</span>
             <span style="font-size:13px;color:#4ade80">${t().score} ${q.score}</span>
+            <button class="btn-outline" style="padding:6px 14px;font-size:13px" onclick="quitToStart()">${t().cancel}</button>
           </div>
         </div>
       </div>
@@ -394,7 +397,7 @@ function renderMCQuiz(root){
             </div>
           `).join('')}
         </div>
-        <div style="font-size:13px;color:#5c675c">${t().keys}</div>
+        <div style="font-size:13px;color:#5c675c">${t().keys} · ${t().cancelKey}</div>
       </div>
     </div>`;
   // Keyboard handler
@@ -422,6 +425,7 @@ function mcAnswer(idx){
 
 function mcKeyHandler(e){
   const q=state.quizData;
+  if(e.key==='Escape'){quitToStart();return}
   if(!q||q.idx>=q.questions.length)return;
   if(q.answers[q.idx])return;
   const k=e.key.toUpperCase();
@@ -522,6 +526,7 @@ function renderGlueck(root){
           <div style="display:flex;align-items:center;gap:18px">
             <span style="font-size:13px;color:#f87171">♥ ${t().lives}: ${g.lives}</span>
             <span style="font-size:13px;color:#4ade80">${t().score}: ${g.score}</span>
+            <button class="btn-outline" style="padding:6px 14px;font-size:13px" onclick="quitToStart()">${t().cancel}</button>
           </div>
         </div>
       </div>
@@ -545,7 +550,7 @@ function renderGlueck(root){
         `:`
           <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
             <button class="btn-outline" onclick="state.glueckData.showSolve=true;render()">📝 ${t().solveBtn}</button>
-            <span style="font-size:13px;color:#5c675c">${t().pickLetter}</span>
+            <span style="font-size:13px;color:#5c675c">${t().pickLetter} · ${t().cancelKey}</span>
           </div>
         `}
         <div style="display:grid;grid-template-columns:repeat(13,1fr);gap:4px;max-width:560px">
@@ -601,6 +606,7 @@ function glueckSolve(){
 }
 
 function glueckKeyHandler(e){
+  if(e.key==='Escape'){quitToStart();return}
   const g=state.glueckData;
   if(!g||g.solved||g.lives<=0)return;
   if(g.showSolve)return; // typing in input
