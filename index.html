@@ -532,7 +532,8 @@ function renderGlueck(root){
       </div>
       <div class="term-body">
         <div>
-          <div style="font-size:14px;color:#5c675c;margin-bottom:16px">&gt; ${t().expandAcronym} <span style="color:#7d8a7d">(${g.item.cat} · ${g.item.subcat})</span></div>
+          <div style="font-size:14px;color:#5c675c;margin-bottom:10px">&gt; ${t().expandAcronym} <span style="color:#7d8a7d">(${g.item.cat} · ${g.item.subcat})</span></div>
+          <div style="font-size:48px;font-weight:800;letter-spacing:3px;color:#e8f5e8;margin-bottom:16px">${g.item.acronym}</div>
           <div style="display:flex;flex-wrap:wrap;gap:2px;line-height:1.4">
             ${letters.map(ch=>{
               if(!/[A-Z]/.test(ch))return `<span style="font-size:28px;font-weight:800;color:#7d8a7d;padding:4px 2px">${ch===' '?'&nbsp;':ch}</span>`;
