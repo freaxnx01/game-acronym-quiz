@@ -441,7 +441,7 @@ function renderStart(root){
         <div style="display:flex;align-items:center;gap:20px;margin-top:8px;flex-wrap:wrap">
           <button class="btn" onclick="startQuiz()">▶ ${t().runQuiz}</button>
           <button class="btn-outline" onclick="state.screen='db';render()">📖 ${t().dbBrowser}</button>
-          <button class="btn-outline" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSenJfADHaUny0bQ6Or3YjEIDPxaq5lGRpCImNCuAAqD-q4LmQ/viewform','_blank')">💡 ${t().suggestAcronym}</button>
+          <button class="btn-outline" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSenJfADHaUny0bQ6Or3YjEIDPxaq5lGRpCImNCuAAqD-q4LmQ/viewform','_blank','noopener')">💡 ${t().suggestAcronym}</button>
           <span style="font-size:13px;color:#5c675c">10 ${t().questions} · ${t().highScore}: ${hs}/10</span>
         </div>
       </div>
