@@ -167,6 +167,32 @@ const ACRONYMS = [
   {acronym:"SCUBA",full:"Self-Contained Underwater Breathing Apparatus",cat:"Science",subcat:"Apronym",source:"wikipedia",recursive:false,apronym:true,link:"https://en.wikipedia.org/wiki/Scuba_diving"},
   {acronym:"RADAR",full:"Radio Detection and Ranging",cat:"Science",subcat:"Apronym",source:"wikipedia",recursive:false,apronym:true,link:"https://en.wikipedia.org/wiki/Radar"},
   {acronym:"LASER",full:"Light Amplification by Stimulated Emission of Radiation",cat:"Science",subcat:"Apronym",source:"wikipedia",recursive:false,apronym:true,link:"https://en.wikipedia.org/wiki/Laser"},
+  // Science → Space
+  {acronym:"NASA",full:"National Aeronautics and Space Administration",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/NASA"},
+  {acronym:"ESA",full:"European Space Agency",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/European_Space_Agency"},
+  {acronym:"ISS",full:"International Space Station",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/International_Space_Station"},
+  {acronym:"GPS",full:"Global Positioning System",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Global_Positioning_System"},
+  {acronym:"LEO",full:"Low Earth Orbit",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Low_Earth_orbit"},
+  {acronym:"JPL",full:"Jet Propulsion Laboratory",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Jet_Propulsion_Laboratory"},
+  {acronym:"ISRO",full:"Indian Space Research Organisation",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Indian_Space_Research_Organisation"},
+  {acronym:"JAXA",full:"Japan Aerospace Exploration Agency",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/JAXA"},
+  {acronym:"EVA",full:"Extravehicular Activity",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Extravehicular_activity"},
+  {acronym:"GEO",full:"Geostationary Orbit",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Geostationary_orbit"},
+  {acronym:"MEO",full:"Medium Earth Orbit",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Medium_Earth_orbit"},
+  {acronym:"JWST",full:"James Webb Space Telescope",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/James_Webb_Space_Telescope"},
+  {acronym:"HST",full:"Hubble Space Telescope",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Hubble_Space_Telescope"},
+  {acronym:"SLS",full:"Space Launch System",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Space_Launch_System"},
+  {acronym:"SRB",full:"Solid Rocket Booster",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Space_Shuttle_Solid_Rocket_Booster"},
+  {acronym:"LOX",full:"Liquid Oxygen",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Liquid_oxygen"},
+  {acronym:"RCS",full:"Reaction Control System",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Reaction_control_system"},
+  {acronym:"TLI",full:"Trans-Lunar Injection",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Trans-lunar_injection"},
+  {acronym:"ECLSS",full:"Environmental Control and Life Support System",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Environmental_control_and_life_support_system"},
+  {acronym:"EMU",full:"Extravehicular Mobility Unit",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Extravehicular_Mobility_Unit"},
+  {acronym:"GTO",full:"Geostationary Transfer Orbit",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Geostationary_transfer_orbit"},
+  {acronym:"EDL",full:"Entry, Descent and Landing",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Entry,_descent,_and_landing"},
+  {acronym:"RTG",full:"Radioisotope Thermoelectric Generator",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Radioisotope_thermoelectric_generator"},
+  {acronym:"CAPCOM",full:"Capsule Communicator",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Capsule_communicator"},
+  {acronym:"ATV",full:"Automated Transfer Vehicle",cat:"Science",subcat:"Space",source:"wikipedia",recursive:false,initialism:true,link:"https://en.wikipedia.org/wiki/Automated_Transfer_Vehicle"},
   // Misc → Fun (easter eggs, not part of any quiz difficulty tier — DB Browser only)
   {acronym:"WAF",full:"Wife Acceptance Factor",cat:"Misc",subcat:"Fun",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Wife_acceptance_factor"},
   // German-only abbreviations
@@ -319,10 +345,11 @@ const TYPE_COPY={
 
 // ─── DIFFICULTY MAP ───
 const DIFFICULTY = {
-  junior:["TCP","DNS","HTTP","HTTPS","API","RAM","CPU","GPU","SSD","HDD","ROM","URL","USB","PDF","HTML","CSS","PHP","WLAN","GUI","CLI","IDE","VCS","VPN","WLAN","DIN","TÜV","ADAC","GmbH","AG","PING","SCUBA","RADAR","LASER","MfG"],
+  junior:["TCP","DNS","HTTP","HTTPS","API","RAM","CPU","GPU","SSD","HDD","ROM","URL","USB","PDF","HTML","CSS","PHP","WLAN","GUI","CLI","IDE","VCS","VPN","WLAN","DIN","TÜV","ADAC","GmbH","AG","PING","SCUBA","RADAR","LASER","MfG","NASA","ESA","ISS","GPS","LEO"],
   senior:["BGP","ISDN","SSH","TLS","NAT","OSPF","DHCP","ARP","ICMP","MAC","NIC","PSU","BIOS","UEFI","NVMe","CSRF","XSS","SQLi","DDoS","PKI","MFA","WAF","IaaS","PaaS","SaaS","FaaS","CDN","SDLC","SOLID","CI/CD","DRY","KISS","YAGNI","REST","OOP","MVC","ORM","TDD","DDD","SLO","SLA","CRUD","SDK","NLP","CNN","LLM","GAN","MLP","ANN","BERT","AGI","LSTM","RNN","StVO","ÖPNV","GEZ","MwSt","BAföG","RPM","XBMC",
-    "ARD","ZDF","C&A","BRD","DDR","USA","BSE","HIV","DRK","GbR","THX","VHS","FSK","RAF","LSD","FKK","DVU","AKW","KKK","RHP","USW","LMAA","PLZ","UPS","DPD","BMX","BPM","XTC","EMI","CBS","BMG","DLRG","EKZ","RTL","DFB","ABS","BMW","KMH","ICE","PVC","FCKW","HNO","EKG","AOK","LBS","WKD","IHK","UKW","NDW","BTM","BKA","LTU","TNT","IRA","NTV","THW","DPA","H&M","BSB","FDH","SOS","KDW","FAZ","BWL","FDP","EDV","IBM","WWW","HSV","VfB","DAF","OMD","TM3","A&O","AEG","TUI","UVA","UVB","THC","OCB"],
-  greybeard:["xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","Stasi","FDJ","VEB","DVP"]
+    "ARD","ZDF","C&A","BRD","DDR","USA","BSE","HIV","DRK","GbR","THX","VHS","FSK","RAF","LSD","FKK","DVU","AKW","KKK","RHP","USW","LMAA","PLZ","UPS","DPD","BMX","BPM","XTC","EMI","CBS","BMG","DLRG","EKZ","RTL","DFB","ABS","BMW","KMH","ICE","PVC","FCKW","HNO","EKG","AOK","LBS","WKD","IHK","UKW","NDW","BTM","BKA","LTU","TNT","IRA","NTV","THW","DPA","H&M","BSB","FDH","SOS","KDW","FAZ","BWL","FDP","EDV","IBM","WWW","HSV","VfB","DAF","OMD","TM3","A&O","AEG","TUI","UVA","UVB","THC","OCB",
+    "JPL","ISRO","JAXA","EVA","GEO","MEO","JWST","HST","SLS","SRB","LOX","RCS"],
+  greybeard:["xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","Stasi","FDJ","VEB","DVP","TLI","ECLSS","EMU","GTO","EDL","RTG","CAPCOM","ATV"]
 };
 
 // ─── HELPERS ───
