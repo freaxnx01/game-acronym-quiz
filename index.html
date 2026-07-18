@@ -56,6 +56,7 @@ input.solve-input:focus{border-color:#4ade80}
 </style>
 </head>
 <body>
+<script src="./version.js"></script>
 <div class="scanlines"></div>
 <div id="app"></div>
 <script>
@@ -996,6 +997,13 @@ function renderDB(root){
 }
 
 render();
+</script>
+<div id="version-badge" title="Version" style="position:fixed;right:8px;bottom:6px;z-index:2147483647;font:600 11px/1 system-ui,-apple-system,sans-serif;color:#8a8f9c;opacity:.5;pointer-events:none"></div>
+<script>
+  (function () {
+    var el = document.getElementById('version-badge');
+    if (el) el.textContent = 'v' + (window.GAME_VERSION || '0.0.0');
+  })();
 </script>
 </body>
 </html>
