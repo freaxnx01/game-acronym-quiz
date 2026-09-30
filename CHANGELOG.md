@@ -6,6 +6,11 @@ All notable changes to this project are documented here, following
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-30
+
+### Added
+- Hub navigation (version badge, fullscreen toggle, More Games, Source, Feedback, GitHub star)
+
 ## [0.1.0] - 2026-07-18
 
 ### Added
