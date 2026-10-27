@@ -77,6 +77,22 @@ const ACRONYMS = [
   {acronym:"BERT",full:"Bidirectional Encoder Representations from Transformers",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/BERT_(language_model)"},
   {acronym:"AGI",full:"Artificial General Intelligence",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Artificial_general_intelligence"},
   {acronym:"HITL",full:"Human-in-the-Loop",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Human-in-the-loop"},
+  {acronym:"CoT",full:"Chain-of-Thought",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Prompt_engineering#Chain-of-thought"},
+  {acronym:"RLHF",full:"Reinforcement Learning from Human Feedback",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback"},
+  {acronym:"AI",full:"Artificial Intelligence",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Artificial_intelligence"},
+  {acronym:"ML",full:"Machine Learning",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Machine_learning"},
+  {acronym:"SFT",full:"Supervised Fine-Tuning",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Fine-tuning_(deep_learning)"},
+  {acronym:"LoRA",full:"Low-Rank Adaptation",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Fine-tuning_(deep_learning)#Low-rank_adaptation"},
+  {acronym:"DPO",full:"Direct Preference Optimization",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback#Direct_preference_optimization"},
+  {acronym:"PEFT",full:"Parameter-Efficient Fine-Tuning",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Fine-tuning_(deep_learning)"},
+  {acronym:"RAG",full:"Retrieval-Augmented Generation",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Retrieval-augmented_generation"},
+  {acronym:"MCP",full:"Model Context Protocol",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Model_Context_Protocol"},
+  {acronym:"MoE",full:"Mixture of Experts",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Mixture_of_experts"},
+  {acronym:"TPU",full:"Tensor Processing Unit",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Tensor_Processing_Unit"},
+  {acronym:"OCR",full:"Optical Character Recognition",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Optical_character_recognition"},
+  {acronym:"TTS",full:"Text-to-Speech",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Speech_synthesis"},
+  {acronym:"ASR",full:"Automatic Speech Recognition",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Speech_recognition"},
+  {acronym:"VLM",full:"Vision-Language Model",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Vision-language_model"},
   // IT → Networking
   {acronym:"TCP",full:"Transmission Control Protocol",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Transmission_Control_Protocol"},
   {acronym:"BGP",full:"Border Gateway Protocol",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Border_Gateway_Protocol"},
@@ -349,11 +365,11 @@ const TYPE_COPY={
 
 // ─── DIFFICULTY MAP ───
 const DIFFICULTY = {
-  junior:["TCP","DNS","HTTP","HTTPS","API","RAM","CPU","GPU","SSD","HDD","ROM","URL","USB","PDF","HTML","CSS","PHP","WLAN","GUI","CLI","IDE","VCS","VPN","WLAN","DIN","TÜV","ADAC","GmbH","AG","PING","SCUBA","RADAR","LASER","MfG","NASA","ESA","ISS","GPS","LEO"],
-  senior:["BGP","ISDN","SSH","TLS","NAT","OSPF","DHCP","ARP","ICMP","MAC","NIC","PSU","BIOS","UEFI","NVMe","CSRF","XSS","SQLi","DDoS","PKI","MFA","WAF","IaaS","PaaS","SaaS","FaaS","CDN","SDLC","SOLID","CI/CD","DRY","KISS","YAGNI","REST","OOP","MVC","ORM","TDD","DDD","SLO","SLA","CRUD","SDK","NLP","CNN","LLM","GAN","MLP","ANN","BERT","AGI","LSTM","RNN","StVO","ÖPNV","GEZ","MwSt","BAföG","RPM","XBMC",
+  junior:["AI","ML","OCR","TCP","DNS","HTTP","HTTPS","API","RAM","CPU","GPU","SSD","HDD","ROM","URL","USB","PDF","HTML","CSS","PHP","WLAN","GUI","CLI","IDE","VCS","VPN","WLAN","DIN","TÜV","ADAC","GmbH","AG","PING","SCUBA","RADAR","LASER","MfG","NASA","ESA","ISS","GPS","LEO"],
+  senior:["CoT","SFT","RAG","MCP","TPU","TTS","ASR","BGP","ISDN","SSH","TLS","NAT","OSPF","DHCP","ARP","ICMP","MAC","NIC","PSU","BIOS","UEFI","NVMe","CSRF","XSS","SQLi","DDoS","PKI","MFA","WAF","IaaS","PaaS","SaaS","FaaS","CDN","SDLC","SOLID","CI/CD","DRY","KISS","YAGNI","REST","OOP","MVC","ORM","TDD","DDD","SLO","SLA","CRUD","SDK","NLP","CNN","LLM","GAN","MLP","ANN","BERT","AGI","LSTM","RNN","StVO","ÖPNV","GEZ","MwSt","BAföG","RPM","XBMC",
     "ARD","ZDF","C&A","BRD","DDR","USA","BSE","HIV","DRK","GbR","THX","VHS","FSK","RAF","LSD","FKK","DVU","AKW","KKK","RHP","USW","LMAA","PLZ","UPS","DPD","BMX","BPM","XTC","EMI","CBS","BMG","DLRG","EKZ","RTL","DFB","ABS","BMW","KMH","ICE","PVC","FCKW","HNO","EKG","AOK","LBS","WKD","IHK","UKW","NDW","BTM","BKA","LTU","TNT","IRA","NTV","THW","DPA","H&M","BSB","FDH","SOS","KDW","FAZ","BWL","FDP","EDV","IBM","WWW","HSV","VfB","DAF","OMD","TM3","A&O","AEG","TUI","UVA","UVB","THC","OCB",
     "JPL","ISRO","JAXA","EVA","GEO","MEO","JWST","HST","SLS","SRB","LOX","RCS"],
-  greybeard:["xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","Stasi","FDJ","VEB","DVP","TLI","ECLSS","EMU","GTO","EDL","RTG","CAPCOM","ATV"]
+  greybeard:["RLHF","LoRA","DPO","PEFT","MoE","VLM","xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","Stasi","FDJ","VEB","DVP","TLI","ECLSS","EMU","GTO","EDL","RTG","CAPCOM","ATV"]
 };
 
 // ─── HELPERS ───
