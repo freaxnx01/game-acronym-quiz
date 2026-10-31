@@ -174,14 +174,31 @@ const ACRONYMS = [
   // Recursive acronyms (some are also backronyms — a name repurposed after the
   // fact rather than designed recursively from the start; see Acronym Types)
   {acronym:"GNU",full:"GNU's Not Unix",cat:"IT",subcat:"Recursive",source:"wikipedia",recursive:true,link:"https://en.wikipedia.org/wiki/GNU"},
-  {acronym:"WINE",full:"Wine Is Not an Emulator",cat:"IT",subcat:"Recursive",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/Wine_(software)"},
-  {acronym:"YAML",full:"YAML Ain't Markup Language",cat:"SW Dev",subcat:"Recursive",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/YAML"},
-  {acronym:"PHP",full:"PHP: Hypertext Preprocessor",cat:"SW Dev",subcat:"Recursive",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/PHP"},
+  {acronym:"WINE",full:"Wine Is Not an Emulator",then:"WINdows Emulator",cat:"IT",subcat:"Recursive",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/Wine_(software)"},
+  {acronym:"YAML",full:"YAML Ain't Markup Language",then:"Yet Another Markup Language",cat:"SW Dev",subcat:"Recursive",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/YAML"},
+  {acronym:"PHP",full:"PHP: Hypertext Preprocessor",then:"Personal Home Page",cat:"SW Dev",subcat:"Recursive",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/PHP"},
   {acronym:"PING",full:"Packet InterNet Groper",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,backronym:true,link:"https://en.wikipedia.org/wiki/Ping_(networking_utility)"},
   {acronym:"PIP",full:"Pip Installs Packages",cat:"SW Dev",subcat:"Recursive",source:"wikipedia",recursive:true,link:"https://en.wikipedia.org/wiki/Pip_(package_manager)"},
   {acronym:"Hurd",full:"Hird of Unix-Replacing Daemons",cat:"IT",subcat:"Recursive",source:"wikipedia",recursive:true,link:"https://en.wikipedia.org/wiki/GNU_Hurd"},
-  {acronym:"RPM",full:"RPM Package Manager",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/RPM_Package_Manager"},
-  {acronym:"XBMC",full:"XBMC Media Center",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/Kodi_(software)"},
+  {acronym:"RPM",full:"RPM Package Manager",then:"Red Hat Package Manager",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/RPM_Package_Manager"},
+  {acronym:"XBMC",full:"XBMC Media Center",then:"Xbox Media Center",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:true,backronym:true,link:"https://en.wikipedia.org/wiki/Kodi_(software)"},
+  // Meaning changed over time ("Then vs. Now" mode: then = original expansion)
+  {acronym:"ABAP",full:"Advanced Business Application Programming",then:"Allgemeiner Berichts-Aufbereitungs-Prozessor",thenLang:"de",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/ABAP"},
+  {acronym:"SAP",full:"Systeme, Anwendungen und Produkte in der Datenverarbeitung",then:"Systemanalyse und Programmentwicklung",lang:"de",cat:"IT",subcat:"Cloud",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/SAP"},
+  {acronym:"RAID",full:"Redundant Array of Independent Disks",then:"Redundant Array of Inexpensive Disks",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/RAID"},
+  {acronym:"DVD",full:"Digital Versatile Disc",then:"Digital Video Disc",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/DVD"},
+  {acronym:"RSS",full:"Really Simple Syndication",then:"RDF Site Summary",cat:"IT",subcat:"Web",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/RSS"},
+  {acronym:"SQL",full:"Structured Query Language",then:"Structured English Query Language",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/SQL"},
+  {acronym:"GCC",full:"GNU Compiler Collection",then:"GNU C Compiler",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/GNU_Compiler_Collection"},
+  {acronym:"GIMP",full:"GNU Image Manipulation Program",then:"General Image Manipulation Program",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/GIMP"},
+  {acronym:"KDE",full:"K Desktop Environment",then:"Kool Desktop Environment",cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/KDE"},
+  {acronym:"ARM",full:"Advanced RISC Machines",then:"Acorn RISC Machine",cat:"IT",subcat:"Hardware",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/ARM_architecture_family"},
+  {acronym:"GSM",full:"Global System for Mobile Communications",then:"Groupe Spécial Mobile",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/GSM"},
+  {acronym:"LLVM",full:"Low Level Virtual Machine",then:"Low Level Virtual Machine",orphan:true,cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/LLVM"},
+  {acronym:"SOAP",full:"Simple Object Access Protocol",then:"Simple Object Access Protocol",orphan:true,cat:"IT",subcat:"Web",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/SOAP"},
+  {acronym:"XFCE",full:"XForms Common Environment",then:"XForms Common Environment",orphan:true,cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Xfce"},
+  {acronym:"CUPS",full:"Common UNIX Printing System",then:"Common UNIX Printing System",orphan:true,cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/CUPS"},
+  {acronym:"VLC",full:"VideoLAN Client",then:"VideoLAN Client",orphan:true,cat:"SW Dev",subcat:"Tools",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/VLC_media_player"},
   // Apronyms — acronyms that are also real, fitting words
   {acronym:"SCUBA",full:"Self-Contained Underwater Breathing Apparatus",cat:"Science",subcat:"Apronym",source:"wikipedia",recursive:false,apronym:true,link:"https://en.wikipedia.org/wiki/Scuba_diving"},
   {acronym:"RADAR",full:"Radio Detection and Ranging",cat:"Science",subcat:"Apronym",source:"wikipedia",recursive:false,apronym:true,link:"https://en.wikipedia.org/wiki/Radar"},
@@ -365,11 +382,11 @@ const TYPE_COPY={
 
 // ─── DIFFICULTY MAP ───
 const DIFFICULTY = {
-  junior:["GPT","UDP","AI","ML","OCR","TCP","DNS","HTTP","HTTPS","API","RAM","CPU","GPU","SSD","HDD","ROM","URL","USB","PDF","HTML","CSS","PHP","WLAN","GUI","CLI","IDE","VCS","VPN","WLAN","DIN","TÜV","ADAC","GmbH","AG","PING","SCUBA","RADAR","LASER","MfG","NASA","ESA","ISS","GPS","LEO"],
-  senior:["FPGA","SMART","HITL","CoT","SFT","RAG","MCP","TPU","TTS","ASR","BGP","ISDN","SSH","TLS","NAT","OSPF","DHCP","ARP","ICMP","MAC","NIC","PSU","BIOS","UEFI","NVMe","CSRF","XSS","SQLi","DDoS","PKI","MFA","WAF","IaaS","PaaS","SaaS","FaaS","CDN","SDLC","SOLID","CI/CD","DRY","KISS","YAGNI","REST","OOP","MVC","ORM","TDD","DDD","SLO","SLA","CRUD","SDK","NLP","CNN","LLM","GAN","MLP","ANN","BERT","AGI","LSTM","RNN","StVO","ÖPNV","GEZ","MwSt","BAföG","RPM","XBMC",
+  junior:["SAP","DVD","SQL","GPT","UDP","AI","ML","OCR","TCP","DNS","HTTP","HTTPS","API","RAM","CPU","GPU","SSD","HDD","ROM","URL","USB","PDF","HTML","CSS","PHP","WLAN","GUI","CLI","IDE","VCS","VPN","WLAN","DIN","TÜV","ADAC","GmbH","AG","PING","SCUBA","RADAR","LASER","MfG","NASA","ESA","ISS","GPS","LEO"],
+  senior:["ABAP","RAID","RSS","GCC","GIMP","KDE","ARM","GSM","VLC","FPGA","SMART","HITL","CoT","SFT","RAG","MCP","TPU","TTS","ASR","BGP","ISDN","SSH","TLS","NAT","OSPF","DHCP","ARP","ICMP","MAC","NIC","PSU","BIOS","UEFI","NVMe","CSRF","XSS","SQLi","DDoS","PKI","MFA","WAF","IaaS","PaaS","SaaS","FaaS","CDN","SDLC","SOLID","CI/CD","DRY","KISS","YAGNI","REST","OOP","MVC","ORM","TDD","DDD","SLO","SLA","CRUD","SDK","NLP","CNN","LLM","GAN","MLP","ANN","BERT","AGI","LSTM","RNN","StVO","ÖPNV","GEZ","MwSt","BAföG","RPM","XBMC",
     "ARD","ZDF","C&A","BRD","DDR","USA","BSE","HIV","DRK","GbR","THX","VHS","FSK","RAF","LSD","FKK","DVU","AKW","KKK","RHP","USW","LMAA","PLZ","UPS","DPD","BMX","BPM","XTC","EMI","CBS","BMG","DLRG","EKZ","RTL","DFB","ABS","BMW","KMH","ICE","PVC","FCKW","HNO","EKG","AOK","LBS","WKD","IHK","UKW","NDW","BTM","BKA","LTU","TNT","IRA","NTV","THW","DPA","H&M","BSB","FDH","SOS","KDW","FAZ","BWL","FDP","EDV","IBM","WWW","HSV","VfB","DAF","OMD","TM3","A&O","AEG","TUI","UVA","UVB","THC","OCB",
     "JPL","ISRO","JAXA","EVA","GEO","MEO","JWST","HST","SLS","SRB","LOX","RCS"],
-  greybeard:["ADR","PRD","TBTF","RLHF","LoRA","DPO","PEFT","MoE","VLM","xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","Stasi","FDJ","VEB","DVP","TLI","ECLSS","EMU","GTO","EDL","RTG","CAPCOM","ATV"]
+  greybeard:["LLVM","SOAP","XFCE","CUPS","ADR","PRD","TBTF","RLHF","LoRA","DPO","PEFT","MoE","VLM","xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","Stasi","FDJ","VEB","DVP","TLI","ECLSS","EMU","GTO","EDL","RTG","CAPCOM","ATV"]
 };
 
 // ─── HELPERS ───
