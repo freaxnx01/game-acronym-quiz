@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add a "Then vs. Now" / "Früher vs. heute" multiple-choice mode that asks for the original meaning of 21 IT acronyms whose meaning changed.
+**Goal:** Add a "Then vs. Now" / "Früher vs. heute" multiple-choice mode that asks for the original meaning of 20 IT acronyms whose meaning changed.
 
 **Architecture:** Single-file browser game (`index.html`, inline JS, no build). Data gets optional `then` / `thenLang` / `orphan` fields on `ACRONYMS` entries. The mode reuses the existing multiple-choice flow (`renderMCQuiz`, `mcAnswer`, `renderResults`) with its own question builder and a reveal-then-ENTER step instead of the 1.5 s auto-advance.
 
@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - Only `index.html` changes at runtime. No new runtime files, no dependencies.
-- Pool: IT acronyms only, exactly 21 entries with `then` (5 existing + 16 new).
+- Pool: IT acronyms only, exactly 20 entries with `then` (4 existing + 16 new).
 - Mode key `thenNow`; labels EN "Then vs. Now", DE "Früher vs. heute".
 - 10 questions per round; topic and difficulty filters are ignored by this mode.
 - Normal multiple choice keeps its 1.5 s auto-advance unchanged.
@@ -42,11 +42,11 @@ Tests for all five are in Task 2's script.
 ### Task 1: Data — `then` fields and 16 new acronyms
 
 **Files:**
-- Modify: `index.html` — `ACRONYMS` entries PHP/YAML/WINE/RPM/XBMC (around lines 177–184), new block after the XBMC line, `DIFFICULTY` lists (around line 368).
+- Modify: `index.html` — `ACRONYMS` entries PHP/YAML/RPM/XBMC (around lines 177–184), new block after the XBMC line, `DIFFICULTY` lists (around line 368).
 - Test: `$SCRATCH/thennow_data.py` (not committed)
 
 **Interfaces:**
-- Produces: `ACRONYMS` entries with `then: string`, optional `thenLang: "de"|"en"`, optional `orphan: true`. `ACRONYMS.filter(a=>a.then).length === 21`.
+- Produces: `ACRONYMS` entries with `then: string`, optional `thenLang: "de"|"en"`, optional `orphan: true`. `ACRONYMS.filter(a=>a.then).length === 20`.
 
 - [ ] **Step 1: Write the failing data test**
 
@@ -56,7 +56,7 @@ Create `$SCRATCH/thennow_data.py`:
 import sys
 from playwright.sync_api import sync_playwright
 NEW = "ABAP SAP RAID DVD RSS SQL GCC GIMP KDE ARM GSM LLVM SOAP XFCE CUPS VLC".split()
-OLD = "PHP YAML WINE RPM XBMC".split()
+OLD = "PHP YAML RPM XBMC".split()
 ORPH = "LLVM SOAP XFCE CUPS VLC".split()
 with sync_playwright() as p:
     b = p.chromium.launch(); pg = b.new_page(); errs = []
@@ -65,7 +65,7 @@ with sync_playwright() as p:
     acr = pg.evaluate("ACRONYMS")
     diff = pg.evaluate("[...DIFFICULTY.junior,...DIFFICULTY.senior,...DIFFICULTY.greybeard]")
     pool = [a for a in acr if a.get("then")]
-    assert len(pool) == 21, f"pool {len(pool)}"
+    assert len(pool) == 20, f"pool {len(pool)}"
     assert sorted(a["acronym"] for a in pool) == sorted(NEW + OLD)
     for n in NEW:
         assert sum(a["acronym"] == n for a in acr) == 1, f"{n} count"
@@ -95,14 +95,13 @@ Fetch each article below (WebFetch) and confirm the original and current expansi
 
 ABAP, SAP, RAID, DVD, RSS, SQL, GNU_Compiler_Collection, GIMP, KDE, ARM_architecture_family, GSM, LLVM, SOAP, Xfce, CUPS, VLC_media_player, PHP, YAML, Wine_(software), RPM_Package_Manager, Kodi_(software) — all under `https://en.wikipedia.org/wiki/`.
 
-- [ ] **Step 4: Add `then` to the 5 existing entries**
+- [ ] **Step 4: Add `then` to the 4 existing entries**
 
 In each of these lines, insert the field right after `full:"…",`:
 
 ```
 PHP:  then:"Personal Home Page",
 YAML: then:"Yet Another Markup Language",
-WINE: then:"WINdows Emulator",
 RPM:  then:"Red Hat Package Manager",
 XBMC: then:"Xbox Media Center",
 ```
@@ -193,6 +192,9 @@ with sync_playwright() as p:
             assert q["options"][q["correctIdx"]] == a["then"], q
             if not a.get("orphan"):
                 assert a["full"] in q["options"], q
+            if a.get("orphan"):
+                others = {x["then"] for k, x in pool.items() if k != q["acronym"]}
+                assert any(o != a["then"] and o in others for o in q["options"]), q
 
     # mode button + German question line
     pg.evaluate("setLang('de')")
@@ -275,6 +277,8 @@ function buildThenNowQuestions(pool,n){
   return pickN(pool,n).map(a=>{
     const opts=new Set([a.then]);
     if(!a.orphan)opts.add(a.full);
+    // Orphan: no `full` trap, so the answer would be the only real phrase; add another real original as decoy
+    if(a.orphan){const dec=pickN(pool.filter(x=>x!==a&&!opts.has(x.then)),1)[0];if(dec)opts.add(dec.then)}
     makeDistractors(a.then,6,a.thenLang||acronymLang(a)).forEach(d=>{if(opts.size<4)opts.add(d)});
     // Short texts with little same-initial vocabulary: top up with other originals
     if(opts.size<4)pickN(pool.filter(x=>!opts.has(x.then)),4-opts.size).forEach(x=>opts.add(x.then));
@@ -290,7 +294,7 @@ After the line `if(state.mode==='glueck'){startGlueck();return}` add:
 
 ```js
   if(state.mode==='thenNow'){
-    // pool is small (21), so topic/difficulty filters are ignored
+    // pool is small (20), so topic/difficulty filters are ignored
     const questions=buildThenNowQuestions(ACRONYMS.filter(a=>a.then),10);
     state.quizData={questions,idx:0,score:0,streak:0,bestStreak:0,answers:[],thenNow:true};
     state.screen='mc-quiz';
@@ -331,7 +335,8 @@ In `mcAnswer`, replace the last line `setTimeout(()=>{q.idx++;render()},1500);` 
     document.getElementById('reveal').innerHTML=`
       <div style="font-size:15px;color:#7d8a7d">${t().thenLabel}: <span style="color:#e8f5e8">${cur.full}</span> → ${t().nowLabel}: <span style="color:#e8f5e8">${now}</span></div>
       <button class="btn" style="margin-top:12px" onclick="thenNowNext()">${t().next}</button>`;
-    document.onkeydown=e=>{if(e.key==='Enter')thenNowNext();else if(e.key==='Escape')quitToStart()};
+    document.getElementById('reveal').scrollIntoView({block:'nearest'});
+    document.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();thenNowNext()}else if(e.key==='Escape')quitToStart()};
     return;
   }
   setTimeout(()=>{q.idx++;render()},1500);

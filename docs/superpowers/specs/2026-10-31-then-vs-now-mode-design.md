@@ -26,8 +26,9 @@ New optional fields on `ACRONYMS` entries:
 | `thenLang` | `"de"`/`"en"` | Only when `then` is in a different language than `full` (ABAP). |
 | `orphan` | boolean | Today it is officially no longer an acronym. `full` then keeps the original expansion so the other modes still work; `then` equals `full`. |
 
-Pool: 21 entries. Every expansion below is verified against its Wikipedia article
+Pool: 20 entries. Every expansion below is verified against its Wikipedia article
 before it is committed; wording follows Wikipedia where it differs.
+WINE was dropped because no readable source (en/de Wikipedia, WineHQ) backs an earlier meaning "WINdows Emulator".
 
 **Existing entries — add `then` only:**
 
@@ -35,7 +36,6 @@ before it is committed; wording follows Wikipedia where it differs.
 |---------|--------|--------------------|
 | PHP | Personal Home Page | PHP: Hypertext Preprocessor |
 | YAML | Yet Another Markup Language | YAML Ain't Markup Language |
-| WINE | WINdows Emulator | Wine Is Not an Emulator |
 | RPM | Red Hat Package Manager | RPM Package Manager |
 | XBMC | Xbox Media Center | XBMC Media Center |
 
