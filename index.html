@@ -524,7 +524,7 @@ function startQuiz(){
   if(state.mode==='types'){state.screen='types';render();return}
   if(state.mode==='glueck'){startGlueck();return}
   if(state.mode==='thenNow'){
-    // pool is small (21), so topic/difficulty filters are ignored
+    // pool is small (20), so topic/difficulty filters are ignored
     const questions=buildThenNowQuestions(ACRONYMS.filter(a=>a.then),10);
     state.quizData={questions,idx:0,score:0,streak:0,bestStreak:0,answers:[],thenNow:true};
     state.screen='mc-quiz';
@@ -636,6 +636,8 @@ function buildThenNowQuestions(pool,n){
   return pickN(pool,n).map(a=>{
     const opts=new Set([a.then]);
     if(!a.orphan)opts.add(a.full);
+    // Orphan: no `full` trap, so the answer would be the only real phrase; add another real original as decoy
+    if(a.orphan){const dec=pickN(pool.filter(x=>x!==a&&!opts.has(x.then)),1)[0];if(dec)opts.add(dec.then)}
     makeDistractors(a.then,6,a.thenLang||acronymLang(a)).forEach(d=>{if(opts.size<4)opts.add(d)});
     // Short texts with little same-initial vocabulary: top up with other originals
     if(opts.size<4)pickN(pool.filter(x=>!opts.has(x.then)),4-opts.size).forEach(x=>opts.add(x.then));
@@ -707,7 +709,8 @@ function mcAnswer(idx){
     document.getElementById('reveal').innerHTML=`
       <div style="font-size:15px;color:#7d8a7d">${t().thenLabel}: <span style="color:#e8f5e8">${cur.full}</span> → ${t().nowLabel}: <span style="color:#e8f5e8">${now}</span></div>
       <button class="btn" style="margin-top:12px" onclick="thenNowNext()">${t().next}</button>`;
-    document.onkeydown=e=>{if(e.key==='Enter')thenNowNext();else if(e.key==='Escape')quitToStart()};
+    document.getElementById('reveal').scrollIntoView({block:'nearest'});
+    document.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();thenNowNext()}else if(e.key==='Escape')quitToStart()};
     return;
   }
   setTimeout(()=>{q.idx++;render()},1500);
