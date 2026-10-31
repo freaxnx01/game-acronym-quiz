@@ -348,8 +348,8 @@ const ACRONYMS = [
 
 // ─── I18N ───
 const I18N = {
-  en:{boot:"booting quiz engine v2.6.0 … OK",tagline:"Do you actually know what TCP stands for? Prove it.",topics:"topics",difficulty:"difficulty",junior:"junior",senior:"senior",greybeard:"greybeard",runQuiz:"RUN QUIZ",questions:"questions",highScore:"high score",expandAcronym:"expand the acronym:",topic:"topic",worth:"worth",keys:"keys: A–D to answer · ENTER to confirm",submit:"SUBMIT",streak:"streak",score:"score",processExited:"process exited · run complete",rank:"rank",bestStreak:"best streak",newHighScore:"new high score!",runLog:"run.log",runAgain:"RUN AGAIN",shareResult:"share result",chooseMode:"choose mode",multipleChoice:"Multiple Choice",gluecksrad:"Fill in the Blanks",acronymTypes:"Acronym Types",dbBrowser:"DB Browser",browse:"browse the acronym DB",search:"search acronyms...",all:"All",example:"Example",pickLetter:"pick a letter (click or type)",solveBtn:"SOLVE",solvePlaceholder:"type the full expansion...",solveBtnConfirm:"CONFIRM",lives:"lives",points:"pts",noResults:"no results",cat:"Cat",subcat:"SubCat",source:"Source",flag:"Flag",link:"Link",language:"Language",back:"← back",allCats:"all categories",cancel:"✕ quit",cancelKey:"ESC to quit",suggestAcronym:"Suggest an acronym"},
-  de:{boot:"Quiz-Engine v2.6.0 wird gestartet … OK",tagline:"Weisst du wirklich, wofür TCP steht? Beweise es.",topics:"Themen",difficulty:"Schwierigkeit",junior:"Anfänger",senior:"Fortgeschritten",greybeard:"Profi",runQuiz:"QUIZ STARTEN",questions:"Fragen",highScore:"Highscore",expandAcronym:"Vom Akronym ausschreiben:",topic:"Thema",worth:"Wert",keys:"Tasten: A–D zum Antworten · ENTER zum Bestätigen",submit:"BESTÄTIGEN",streak:"Serie",score:"Punkte",processExited:"Prozess beendet · Durchlauf fertig",rank:"Rang",bestStreak:"beste Serie",newHighScore:"neuer Highscore!",runLog:"run.log",runAgain:"NOCHMALS",shareResult:"Ergebnis teilen",chooseMode:"Modus wählen",multipleChoice:"Multiple Choice",gluecksrad:"Lückentext",acronymTypes:"Akronym-Arten",dbBrowser:"DB-Browser",browse:"Akronym-Datenbank durchsuchen",search:"Akronyme suchen...",all:"Alle",example:"Beispiel",pickLetter:"Buchstabe wählen (klicken oder tippen)",solveBtn:"LÖSEN",solvePlaceholder:"volle Ausschreibung eingeben...",solveBtnConfirm:"BESTÄTIGEN",lives:"Leben",points:"Pkt",noResults:"keine Ergebnisse",cat:"Kat",subcat:"SubKat",source:"Quelle",flag:"Flag",link:"Link",language:"Sprache",back:"← zurück",allCats:"alle Kategorien",cancel:"✕ beenden",cancelKey:"ESC zum Beenden",suggestAcronym:"Akronym vorschlagen"}
+  en:{boot:"booting quiz engine v2.6.0 … OK",tagline:"Do you actually know what TCP stands for? Prove it.",topics:"topics",difficulty:"difficulty",junior:"junior",senior:"senior",greybeard:"greybeard",runQuiz:"RUN QUIZ",questions:"questions",highScore:"high score",expandAcronym:"expand the acronym:",topic:"topic",worth:"worth",keys:"keys: A–D to answer · ENTER to confirm",submit:"SUBMIT",streak:"streak",score:"score",processExited:"process exited · run complete",rank:"rank",bestStreak:"best streak",newHighScore:"new high score!",runLog:"run.log",runAgain:"RUN AGAIN",shareResult:"share result",chooseMode:"choose mode",multipleChoice:"Multiple Choice",gluecksrad:"Fill in the Blanks",acronymTypes:"Acronym Types",dbBrowser:"DB Browser",browse:"browse the acronym DB",search:"search acronyms...",all:"All",example:"Example",pickLetter:"pick a letter (click or type)",solveBtn:"SOLVE",solvePlaceholder:"type the full expansion...",solveBtnConfirm:"CONFIRM",lives:"lives",points:"pts",noResults:"no results",cat:"Cat",subcat:"SubCat",source:"Source",flag:"Flag",link:"Link",language:"Language",back:"← back",allCats:"all categories",cancel:"✕ quit",cancelKey:"ESC to quit",suggestAcronym:"Suggest an acronym",thenVsNow:"Then vs. Now",thenNowQuestion:"what did it originally stand for?",thenLabel:"then",nowLabel:"now",noLongerAcronym:"no longer an acronym",next:"next →"},
+  de:{boot:"Quiz-Engine v2.6.0 wird gestartet … OK",tagline:"Weisst du wirklich, wofür TCP steht? Beweise es.",topics:"Themen",difficulty:"Schwierigkeit",junior:"Anfänger",senior:"Fortgeschritten",greybeard:"Profi",runQuiz:"QUIZ STARTEN",questions:"Fragen",highScore:"Highscore",expandAcronym:"Vom Akronym ausschreiben:",topic:"Thema",worth:"Wert",keys:"Tasten: A–D zum Antworten · ENTER zum Bestätigen",submit:"BESTÄTIGEN",streak:"Serie",score:"Punkte",processExited:"Prozess beendet · Durchlauf fertig",rank:"Rang",bestStreak:"beste Serie",newHighScore:"neuer Highscore!",runLog:"run.log",runAgain:"NOCHMALS",shareResult:"Ergebnis teilen",chooseMode:"Modus wählen",multipleChoice:"Multiple Choice",gluecksrad:"Lückentext",acronymTypes:"Akronym-Arten",dbBrowser:"DB-Browser",browse:"Akronym-Datenbank durchsuchen",search:"Akronyme suchen...",all:"Alle",example:"Beispiel",pickLetter:"Buchstabe wählen (klicken oder tippen)",solveBtn:"LÖSEN",solvePlaceholder:"volle Ausschreibung eingeben...",solveBtnConfirm:"BESTÄTIGEN",lives:"Leben",points:"Pkt",noResults:"keine Ergebnisse",cat:"Kat",subcat:"SubKat",source:"Quelle",flag:"Flag",link:"Link",language:"Sprache",back:"← zurück",allCats:"alle Kategorien",cancel:"✕ beenden",cancelKey:"ESC zum Beenden",suggestAcronym:"Akronym vorschlagen",thenVsNow:"Früher vs. heute",thenNowQuestion:"Wofür stand es ursprünglich?",thenLabel:"früher",nowLabel:"heute",noLongerAcronym:"kein Akronym mehr",next:"weiter →"}
 };
 
 // ─── ACRONYM TYPES (recursive · backronym · initialism · apronym) ───
@@ -500,6 +500,7 @@ function renderStart(root){
             <button class="tag ${state.mode==='mc'?'on':''}" onclick="setMode('mc')">${t().multipleChoice}</button>
             <button class="tag ${state.mode==='glueck'?'on':''}" onclick="setMode('glueck')">${t().gluecksrad}</button>
             <button class="tag ${state.mode==='types'?'on':''}" onclick="setMode('types')">${t().acronymTypes}</button>
+            <button class="tag ${state.mode==='thenNow'?'on':''}" onclick="setMode('thenNow')">${t().thenVsNow}</button>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:20px;margin-top:8px;flex-wrap:wrap">
@@ -522,6 +523,14 @@ function toggleTopic(k){if(state.topics.has(k))state.topics.delete(k);else state
 function startQuiz(){
   if(state.mode==='types'){state.screen='types';render();return}
   if(state.mode==='glueck'){startGlueck();return}
+  if(state.mode==='thenNow'){
+    // pool is small (21), so topic/difficulty filters are ignored
+    const questions=buildThenNowQuestions(ACRONYMS.filter(a=>a.then),10);
+    state.quizData={questions,idx:0,score:0,streak:0,bestStreak:0,answers:[],thenNow:true};
+    state.screen='mc-quiz';
+    render();
+    return;
+  }
   // Multiple choice
   let pool=getFiltered();
   if(pool.length===0)pool=getTopicFiltered(); // relax difficulty first, keep topic choice
@@ -620,6 +629,21 @@ function buildMCQuestions(pool,n){
   });
 }
 
+// "Then vs. Now": the correct answer is the ORIGINAL expansion (then); today's
+// expansion is planted as a trap unless the acronym is now a bare name (orphan).
+// `full` carries `then` so mcAnswer/renderResults log the right expansion.
+function buildThenNowQuestions(pool,n){
+  return pickN(pool,n).map(a=>{
+    const opts=new Set([a.then]);
+    if(!a.orphan)opts.add(a.full);
+    makeDistractors(a.then,6,a.thenLang||acronymLang(a)).forEach(d=>{if(opts.size<4)opts.add(d)});
+    // Short texts with little same-initial vocabulary: top up with other originals
+    if(opts.size<4)pickN(pool.filter(x=>!opts.has(x.then)),4-opts.size).forEach(x=>opts.add(x.then));
+    const options=shuffle([...opts]);
+    return{acronym:a.acronym,full:a.then,now:a.full,orphan:!!a.orphan,cat:a.cat,subcat:a.subcat,link:a.link,options,correctIdx:options.indexOf(a.then)};
+  });
+}
+
 // ─── MULTIPLE CHOICE QUIZ ───
 function renderMCQuiz(root){
   const q=state.quizData;
@@ -642,7 +666,7 @@ function renderMCQuiz(root){
       <div class="score-bar"><div class="score-bar-fill" style="width:${progress}%"></div></div>
       <div class="term-body">
         <div>
-          <div style="font-size:14px;color:#5c675c;margin-bottom:10px">&gt; ${t().expandAcronym}</div>
+          <div style="font-size:14px;color:#5c675c;margin-bottom:10px">&gt; ${q.thenNow?t().thenNowQuestion:t().expandAcronym}</div>
           <div style="font-size:64px;font-weight:800;letter-spacing:4px;color:#e8f5e8">${cur.acronym}</div>
           <div style="font-size:14px;color:#7d8a7d;margin-top:6px">${t().topic}: ${cur.cat} · ${cur.subcat} · 100 ${t().points}</div>
         </div>
@@ -654,6 +678,7 @@ function renderMCQuiz(root){
             </div>
           `).join('')}
         </div>
+        <div id="reveal"></div>
         <div style="font-size:13px;color:#5c675c">${t().keys} · ${t().cancelKey}</div>
       </div>
     </div>`;
@@ -677,7 +702,24 @@ function mcAnswer(idx){
   if(optEl)optEl.className='option '+(correct?'opt-correct':'opt-wrong');
   if(correctEl&&idx!==cur.correctIdx)correctEl.className='option opt-correct';
   document.onkeydown=null;
+  if(q.thenNow){
+    const now=cur.orphan?t().noLongerAcronym:cur.now;
+    document.getElementById('reveal').innerHTML=`
+      <div style="font-size:15px;color:#7d8a7d">${t().thenLabel}: <span style="color:#e8f5e8">${cur.full}</span> → ${t().nowLabel}: <span style="color:#e8f5e8">${now}</span></div>
+      <button class="btn" style="margin-top:12px" onclick="thenNowNext()">${t().next}</button>`;
+    document.onkeydown=e=>{if(e.key==='Enter')thenNowNext();else if(e.key==='Escape')quitToStart()};
+    return;
+  }
   setTimeout(()=>{q.idx++;render()},1500);
+}
+
+// Advance past the then→now reveal. Clearing the handler first makes a fast
+// double ENTER advance one question only: the second press reaches the next
+// question's mcKeyHandler, which ignores ENTER while unanswered.
+function thenNowNext(){
+  document.onkeydown=null;
+  state.quizData.idx++;
+  render();
 }
 
 function mcKeyHandler(e){
