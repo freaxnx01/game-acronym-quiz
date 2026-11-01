@@ -93,6 +93,39 @@ const ACRONYMS = [
   {acronym:"TTS",full:"Text-to-Speech",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Speech_synthesis"},
   {acronym:"ASR",full:"Automatic Speech Recognition",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Speech_recognition"},
   {acronym:"VLM",full:"Vision-Language Model",cat:"IT",subcat:"AI",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Vision-language_model"},
+  // IT → Unix/Linux
+  {acronym:"POSIX",full:"Portable Operating System Interface",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/POSIX"},
+  {acronym:"ELF",full:"Executable and Linkable Format",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Executable_and_Linkable_Format"},
+  {acronym:"FHS",full:"Filesystem Hierarchy Standard",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard"},
+  {acronym:"TTY",full:"Teletypewriter",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Tty_(Unix)"},
+  {acronym:"PID",full:"Process Identifier",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Process_identifier"},
+  {acronym:"UID",full:"User Identifier",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/User_identifier"},
+  {acronym:"PAM",full:"Pluggable Authentication Modules",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Pluggable_authentication_module"},
+  {acronym:"LVM",full:"Logical Volume Manager",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)"},
+  {acronym:"NFS",full:"Network File System",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Network_File_System"},
+  {acronym:"GRUB",full:"GRand Unified Bootloader",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/GNU_GRUB"},
+  {acronym:"KVM",full:"Kernel-based Virtual Machine",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Kernel-based_Virtual_Machine"},
+  {acronym:"LXC",full:"Linux Containers",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/LXC"},
+  {acronym:"SELinux",full:"Security-Enhanced Linux",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Security-Enhanced_Linux"},
+  {acronym:"RHEL",full:"Red Hat Enterprise Linux",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux"},
+  {acronym:"APT",full:"Advanced Package Tool",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/APT_(software)"},
+  {acronym:"GTK",full:"GIMP Toolkit",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/GTK"},
+  {acronym:"GNOME",full:"GNU Network Object Model Environment",then:"GNU Network Object Model Environment",orphan:true,cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/GNOME"},
+  {acronym:"ZFS",full:"Zettabyte File System",then:"Zettabyte File System",orphan:true,cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/ZFS"},
+  {acronym:"SUSE",full:"Software- und System-Entwicklung",then:"Software- und System-Entwicklung",orphan:true,lang:"de",cat:"IT",subcat:"Unix/Linux",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/SUSE_S.A."},
+  // IT → Open Source
+  {acronym:"OSS",full:"Open Source Software",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Open-source_software"},
+  {acronym:"FOSS",full:"Free and Open Source Software",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Free_and_open-source_software"},
+  {acronym:"FLOSS",full:"Free/Libre and Open Source Software",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Free_and_open-source_software"},
+  {acronym:"GPL",full:"GNU General Public License",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/GNU_General_Public_License"},
+  {acronym:"AGPL",full:"GNU Affero General Public License",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/GNU_Affero_General_Public_License"},
+  {acronym:"MPL",full:"Mozilla Public License",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Mozilla_Public_License"},
+  {acronym:"BSD",full:"Berkeley Software Distribution",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Berkeley_Software_Distribution"},
+  {acronym:"FSF",full:"Free Software Foundation",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Free_Software_Foundation"},
+  {acronym:"OSI",full:"Open Source Initiative",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Open_Source_Initiative"},
+  {acronym:"CC",full:"Creative Commons",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Creative_Commons"},
+  {acronym:"LTS",full:"Long-Term Support",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Long-term_support"},
+  {acronym:"LGPL",full:"GNU Lesser General Public License",then:"GNU Library General Public License",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License"},
   // IT → Networking
   {acronym:"TCP",full:"Transmission Control Protocol",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Transmission_Control_Protocol"},
   {acronym:"BGP",full:"Border Gateway Protocol",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Border_Gateway_Protocol"},
@@ -382,11 +415,11 @@ const TYPE_COPY={
 
 // ─── DIFFICULTY MAP ───
 const DIFFICULTY = {
-  junior:["SAP","DVD","SQL","GPT","UDP","AI","ML","OCR","TCP","DNS","HTTP","HTTPS","API","RAM","CPU","GPU","SSD","HDD","ROM","URL","USB","PDF","HTML","CSS","PHP","WLAN","GUI","CLI","IDE","VCS","VPN","WLAN","DIN","TÜV","ADAC","GmbH","AG","PING","SCUBA","RADAR","LASER","MfG","NASA","ESA","ISS","GPS","LEO"],
-  senior:["ABAP","RAID","RSS","GCC","GIMP","KDE","ARM","GSM","VLC","FPGA","SMART","HITL","CoT","SFT","RAG","MCP","TPU","TTS","ASR","BGP","ISDN","SSH","TLS","NAT","OSPF","DHCP","ARP","ICMP","MAC","NIC","PSU","BIOS","UEFI","NVMe","CSRF","XSS","SQLi","DDoS","PKI","MFA","WAF","IaaS","PaaS","SaaS","FaaS","CDN","SDLC","SOLID","CI/CD","DRY","KISS","YAGNI","REST","OOP","MVC","ORM","TDD","DDD","SLO","SLA","CRUD","SDK","NLP","CNN","LLM","GAN","MLP","ANN","BERT","AGI","LSTM","RNN","StVO","ÖPNV","GEZ","MwSt","BAföG","RPM","XBMC",
+  junior:["OSS","GPL","PID","LTS","SAP","DVD","SQL","GPT","UDP","AI","ML","OCR","TCP","DNS","HTTP","HTTPS","API","RAM","CPU","GPU","SSD","HDD","ROM","URL","USB","PDF","HTML","CSS","PHP","WLAN","GUI","CLI","IDE","VCS","VPN","WLAN","DIN","TÜV","ADAC","GmbH","AG","PING","SCUBA","RADAR","LASER","MfG","NASA","ESA","ISS","GPS","LEO"],
+  senior:["POSIX","ELF","TTY","UID","LVM","NFS","GRUB","KVM","LXC","SELinux","RHEL","APT","GTK","GNOME","FOSS","MPL","BSD","FSF","OSI","CC","ABAP","RAID","RSS","GCC","GIMP","KDE","ARM","GSM","VLC","FPGA","SMART","HITL","CoT","SFT","RAG","MCP","TPU","TTS","ASR","BGP","ISDN","SSH","TLS","NAT","OSPF","DHCP","ARP","ICMP","MAC","NIC","PSU","BIOS","UEFI","NVMe","CSRF","XSS","SQLi","DDoS","PKI","MFA","WAF","IaaS","PaaS","SaaS","FaaS","CDN","SDLC","SOLID","CI/CD","DRY","KISS","YAGNI","REST","OOP","MVC","ORM","TDD","DDD","SLO","SLA","CRUD","SDK","NLP","CNN","LLM","GAN","MLP","ANN","BERT","AGI","LSTM","RNN","StVO","ÖPNV","GEZ","MwSt","BAföG","RPM","XBMC",
     "ARD","ZDF","C&A","BRD","DDR","USA","BSE","HIV","DRK","GbR","THX","VHS","FSK","RAF","LSD","FKK","DVU","AKW","KKK","RHP","USW","LMAA","PLZ","UPS","DPD","BMX","BPM","XTC","EMI","CBS","BMG","DLRG","EKZ","RTL","DFB","ABS","BMW","KMH","ICE","PVC","FCKW","HNO","EKG","AOK","LBS","WKD","IHK","UKW","NDW","BTM","BKA","LTU","TNT","IRA","NTV","THW","DPA","H&M","BSB","FDH","SOS","KDW","FAZ","BWL","FDP","EDV","IBM","WWW","HSV","VfB","DAF","OMD","TM3","A&O","AEG","TUI","UVA","UVB","THC","OCB",
     "JPL","ISRO","JAXA","EVA","GEO","MEO","JWST","HST","SLS","SRB","LOX","RCS"],
-  greybeard:["LLVM","SOAP","XFCE","CUPS","ADR","PRD","TBTF","RLHF","LoRA","DPO","PEFT","MoE","VLM","xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","Stasi","FDJ","VEB","DVP","TLI","ECLSS","EMU","GTO","EDL","RTG","CAPCOM","ATV"]
+  greybeard:["FHS","PAM","ZFS","SUSE","FLOSS","AGPL","LGPL","LLVM","SOAP","XFCE","CUPS","ADR","PRD","TBTF","RLHF","LoRA","DPO","PEFT","MoE","VLM","xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","Stasi","FDJ","VEB","DVP","TLI","ECLSS","EMU","GTO","EDL","RTG","CAPCOM","ATV"]
 };
 
 // ─── HELPERS ───
