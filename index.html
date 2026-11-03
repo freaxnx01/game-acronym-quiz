@@ -126,6 +126,15 @@ const ACRONYMS = [
   {acronym:"CC",full:"Creative Commons",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Creative_Commons"},
   {acronym:"LTS",full:"Long-Term Support",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Long-term_support"},
   {acronym:"LGPL",full:"GNU Lesser General Public License",then:"GNU Library General Public License",cat:"IT",subcat:"Open Source",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License"},
+  // Science → Ariane Launch (c't 22/2026, "Europas Griff nach den Sternen", Ariane 6 launch from Kourou)
+  {acronym:"CSG",full:"Centre Spatial Guyanais",cat:"Science",subcat:"Ariane Launch",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Guiana_Space_Centre"},
+  {acronym:"CNES",full:"Centre national d'études spatiales",cat:"Science",subcat:"Ariane Launch",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/CNES"},
+  {acronym:"EUMETSAT",full:"European Organisation for the Exploitation of Meteorological Satellites",cat:"Science",subcat:"Ariane Launch",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/EUMETSAT"},
+  {acronym:"MTG",full:"Meteosat Third Generation",cat:"Science",subcat:"Ariane Launch",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Meteosat"},
+  {acronym:"C3S",full:"Copernicus Climate Change Service",cat:"Science",subcat:"Ariane Launch",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Copernicus_Programme"},
+  {acronym:"LVA",full:"Launch Vehicle Adapter",cat:"Science",subcat:"Ariane Launch",source:"c't 22/2026",recursive:false,link:"https://en.wikipedia.org/wiki/Ariane_6"},
+  {acronym:"DDO",full:"Directeur des Opérations",cat:"Science",subcat:"Ariane Launch",source:"c't 22/2026",recursive:false,link:"https://en.wikipedia.org/wiki/Guiana_Space_Centre"},
+  {acronym:"AGV",full:"Automated Ground Vehicle",cat:"Science",subcat:"Ariane Launch",source:"c't 22/2026",recursive:false,link:"https://en.wikipedia.org/wiki/Ariane_6"},
   // IT → Networking
   {acronym:"TCP",full:"Transmission Control Protocol",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Transmission_Control_Protocol"},
   {acronym:"BGP",full:"Border Gateway Protocol",cat:"IT",subcat:"Networking",source:"wikipedia",recursive:false,link:"https://en.wikipedia.org/wiki/Border_Gateway_Protocol"},
@@ -416,10 +425,10 @@ const TYPE_COPY={
 // ─── DIFFICULTY MAP ───
 const DIFFICULTY = {
   junior:["OSS","GPL","PID","LTS","SAP","DVD","SQL","GPT","UDP","AI","ML","OCR","TCP","DNS","HTTP","HTTPS","API","RAM","CPU","GPU","SSD","HDD","ROM","URL","USB","PDF","HTML","CSS","PHP","WLAN","GUI","CLI","IDE","VCS","VPN","WLAN","DIN","TÜV","ADAC","GmbH","AG","PING","SCUBA","RADAR","LASER","MfG","NASA","ESA","ISS","GPS","LEO"],
-  senior:["POSIX","ELF","TTY","UID","LVM","NFS","GRUB","KVM","LXC","SELinux","RHEL","APT","GTK","GNOME","FOSS","MPL","BSD","FSF","OSI","CC","ABAP","RAID","RSS","GCC","GIMP","KDE","ARM","GSM","VLC","FPGA","SMART","HITL","CoT","SFT","RAG","MCP","TPU","TTS","ASR","BGP","ISDN","SSH","TLS","NAT","OSPF","DHCP","ARP","ICMP","MAC","NIC","PSU","BIOS","UEFI","NVMe","CSRF","XSS","SQLi","DDoS","PKI","MFA","WAF","IaaS","PaaS","SaaS","FaaS","CDN","SDLC","SOLID","CI/CD","DRY","KISS","YAGNI","REST","OOP","MVC","ORM","TDD","DDD","SLO","SLA","CRUD","SDK","NLP","CNN","LLM","GAN","MLP","ANN","BERT","AGI","LSTM","RNN","StVO","ÖPNV","GEZ","MwSt","BAföG","RPM","XBMC",
+  senior:["CSG","CNES","EUMETSAT","MTG","POSIX","ELF","TTY","UID","LVM","NFS","GRUB","KVM","LXC","SELinux","RHEL","APT","GTK","GNOME","FOSS","MPL","BSD","FSF","OSI","CC","ABAP","RAID","RSS","GCC","GIMP","KDE","ARM","GSM","VLC","FPGA","SMART","HITL","CoT","SFT","RAG","MCP","TPU","TTS","ASR","BGP","ISDN","SSH","TLS","NAT","OSPF","DHCP","ARP","ICMP","MAC","NIC","PSU","BIOS","UEFI","NVMe","CSRF","XSS","SQLi","DDoS","PKI","MFA","WAF","IaaS","PaaS","SaaS","FaaS","CDN","SDLC","SOLID","CI/CD","DRY","KISS","YAGNI","REST","OOP","MVC","ORM","TDD","DDD","SLO","SLA","CRUD","SDK","NLP","CNN","LLM","GAN","MLP","ANN","BERT","AGI","LSTM","RNN","StVO","ÖPNV","GEZ","MwSt","BAföG","RPM","XBMC",
     "ARD","ZDF","C&A","BRD","DDR","USA","BSE","HIV","DRK","GbR","THX","VHS","FSK","RAF","LSD","FKK","DVU","AKW","KKK","RHP","USW","LMAA","PLZ","UPS","DPD","BMX","BPM","XTC","EMI","CBS","BMG","DLRG","EKZ","RTL","DFB","ABS","BMW","KMH","ICE","PVC","FCKW","HNO","EKG","AOK","LBS","WKD","IHK","UKW","NDW","BTM","BKA","LTU","TNT","IRA","NTV","THW","DPA","H&M","BSB","FDH","SOS","KDW","FAZ","BWL","FDP","EDV","IBM","WWW","HSV","VfB","DAF","OMD","TM3","A&O","AEG","TUI","UVA","UVB","THC","OCB",
     "JPL","ISRO","JAXA","EVA","GEO","MEO","JWST","HST","SLS","SRB","LOX","RCS"],
-  greybeard:["FHS","PAM","ZFS","SUSE","FLOSS","AGPL","LGPL","LLVM","SOAP","XFCE","CUPS","ADR","PRD","TBTF","RLHF","LoRA","DPO","PEFT","MoE","VLM","xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","Stasi","FDJ","VEB","DVP","TLI","ECLSS","EMU","GTO","EDL","RTG","CAPCOM","ATV"]
+  greybeard:["C3S","LVA","DDO","AGV","FHS","PAM","ZFS","SUSE","FLOSS","AGPL","LGPL","LLVM","SOAP","XFCE","CUPS","ADR","PRD","TBTF","RLHF","LoRA","DPO","PEFT","MoE","VLM","xLSTM","Zero-Day","GraphQL","GNU","WINE","YAML","PIP","Hurd","UEFI","OSPF","ICMP","RS","WK","VBS","GWK","GeBüV","OR","ZGB","SED","NVA","MfS","Stasi","FDJ","VEB","DVP","TLI","ECLSS","EMU","GTO","EDL","RTG","CAPCOM","ATV"]
 };
 
 // ─── HELPERS ───
